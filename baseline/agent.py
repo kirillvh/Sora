@@ -24,6 +24,7 @@ import pathlib
 import sys
 
 from llm.client import chat
+from Sora import Ledger
 from tools.deck import make_deck_from_markdown
 from tools.search import search
 
@@ -88,8 +89,24 @@ class SoraAgent:
     def __init__(self, cached_search: bool = False):
         self.history = []  # entire conversation, resent verbatim every turn
         self.cached_search = cached_search
+        self.turn = 0
+        self.session_label = Ledger.session_id()
+
+    # Metering only: the ledger labels every call with the session it belongs
+    # to. No state is loaded or persisted here - the baseline still forgets.
+    def start_session(self, session_id: str) -> None:
+        self.session_label = session_id
+
+    def end_session(self, session_id: str) -> None:
+        Ledger.print_summary("%s done. " % session_id)
 
     def respond(self, user_text: str) -> str:
+        self.turn += 1
+        with Ledger.call_context(category="chat", session_id=self.session_label,
+                                 turn=self.turn, cache_lane="chat"):
+            return self._respond(user_text)
+
+    def _respond(self, user_text: str) -> str:
         self.history.append({"role": "user", "content": user_text})
         for _ in range(MAX_TOOL_ROUNDS):
             messages = [{"role": "system", "content": SYSTEM_PROMPT}] + self.history
@@ -131,6 +148,14 @@ class SoraAgent:
         return "Error: exceeded maximum tool rounds."
 
     def _run_tool(self, tc) -> str:
+        # tool_span records the result, its size and latency into the same
+        # trace.jsonl as the LLM calls (ASSIGNMENT.md 8.1 wants both).
+        with Ledger.tool_span(tc.function.name, tc.function.arguments) as span:
+            span.tool_call_id = tc.id
+            span.result = self._call_tool(tc)
+            return span.result
+
+    def _call_tool(self, tc) -> str:
         try:
             args = json.loads(tc.function.arguments or "{}")
             if tc.function.name == "web_search":
@@ -167,6 +192,9 @@ def main():
         if not user:
             break
         print("sora >", agent.respond(user), "\n")
+
+    # What this conversation cost. Cumulative numbers: report_stats.
+    Ledger.print_summary()
 
 
 if __name__ == "__main__":

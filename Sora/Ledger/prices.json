@@ -1,0 +1,25 @@
+{
+  "_comment": [
+    "Fallback price table, USD per MILLION tokens. Only consulted when the",
+    "endpoint does not report a cost of its own - on OpenRouter the meter asks",
+    "for usage accounting and the provider figure wins (see pricing.py).",
+    "Add a row for any model you point LLM_MODEL at; a missing row makes the",
+    "cost None and source 'unknown' rather than silently 0."
+  ],
+  "unit": "per_million_tokens",
+  "checked": "2026-08-25",
+  "models": {
+    "openai/gpt-4o-mini": {
+      "prompt": 0.15,
+      "completion": 0.60,
+      "cached_prompt": 0.075,
+      "source": "openrouter/openai list price"
+    },
+    "openai/gpt-4o": {
+      "prompt": 2.50,
+      "completion": 10.00,
+      "cached_prompt": 1.25,
+      "source": "openrouter/openai list price"
+    }
+  }
+}

@@ -50,13 +50,27 @@ def model_name() -> str:
     return os.environ.get("LLM_MODEL", "openai/gpt-4o-mini")
 
 
-def chat(messages, tools=None, **kwargs):
-    """One chat-completion call. Returns the raw response object
-    (so callers can read .choices[0].message, .usage, tool calls, etc.)."""
+def _send(messages, tools=None, **kwargs):
+    """The raw transport. Nothing but the meter should call this directly."""
     params = dict(model=model_name(), messages=messages, **kwargs)
     if tools:
         params["tools"] = tools
     return get_client().chat.completions.create(**params)
+
+
+def chat(messages, tools=None, **kwargs):
+    """One chat-completion call. Returns the raw response object
+    (so callers can read .choices[0].message, .usage, tool calls, etc.).
+
+    Routed through Sora.Ledger's single recording hook, so every LLM call in
+    the repo lands in out/trace.jsonl with tokens, cost, cache and latency -
+    including calls made by code that has never heard of the ledger. Set
+    SORA_LEDGER_DISABLED=1 to bypass recording (the call still runs).
+    Attribute a call with `Sora.Ledger.call_context(category=..., turn=...)`.
+    """
+    from Sora.Ledger.meter import metered  # local import: Ledger imports us back
+
+    return metered(_send, messages, tools=tools, **kwargs)
 
 
 def chat_text(messages, **kwargs) -> str:

@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 .env
 out/
+!out/trace.jsonl
 ASSIGNMENT.md
 README_STARTER.md
 .env.example
