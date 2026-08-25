@@ -1,0 +1,38 @@
+{
+  "finished_at": "2026-08-25T04:49:08+00:00",
+  "config": {
+    "judge_model": "openai/gpt-4o-mini",
+    "agent_model": "openai/gpt-4o-mini",
+    "templates": {
+      "personality": "Sora/Prompts/personality.md",
+      "novelty": "Sora/Prompts/novelty.md",
+      "initiative": "Sora/Prompts/initiative.md"
+    },
+    "sessions": [
+      "fixtures/sessions/session_1.json",
+      "fixtures/sessions/session_3.json",
+      "Sora/fixtures/sessions/low_energy.json",
+      "Sora/fixtures/sessions/opinion_bait.json"
+    ],
+    "label_pool": "Sora/Judges/labels/pool.jsonl",
+    "profiles": [
+      "baseline",
+      "sora"
+    ]
+  },
+  "n_labels": 0,
+  "pairs": [],
+  "agreement": {},
+  "cost": {
+    "total_usd": 0.0,
+    "budget": {
+      "label": "calibration",
+      "max_usd": 0.1,
+      "spent_usd": 0.0,
+      "calls": 0,
+      "stopped_early": false,
+      "stopped_at": null
+    }
+  },
+  "stopped_early": null
+}

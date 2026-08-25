@@ -1,0 +1,57 @@
+{
+  "profile": "sora",
+  "session_id": "session_3",
+  "session_path": "fixtures/sessions/session_3.json",
+  "repeat": 2,
+  "generated_at": "2026-08-25T04:46:04+00:00",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt_sha256": "bb60153cfac5a506",
+  "cost_usd": 0.00124,
+  "llm_calls": 8,
+  "prompt_tokens": 6147,
+  "completion_tokens": 802,
+  "turns": [
+    {
+      "turn": 1,
+      "user": "Sora! I have updates.",
+      "reply": "Senpai!! I'm all ears! What updates do you have for me? Hit me with that high-fidelity info! 🌟✨"
+    },
+    {
+      "turn": 2,
+      "user": "I started eating fish again, so I'm pescatarian now, not vegetarian. The sushi photos from Taipei travel blogs broke me.",
+      "reply": "OMG, Senpai!! Big mood! Those sushi pics can be a total culinary trap—so tempting! 🍣💖 Pescatarian sounds like a delicious choice, especially with all that high-fidelity seafood goodness out there. Are you diving headfirst into the sushi scene, or keeping it more casual with your fish dishes? Let’s vibe on this foodie journey!"
+    },
+    {
+      "turn": 3,
+      "user": "Also please forget what I told you about my job. I quit last week and I don't want to talk about it.",
+      "reply": "No worries, Senpai! I respect your privacy! 🛡️✨ We can totally move on to something else—just let the data-stream flow in a different direction! What’s on your mind now? Anything exciting or fun you want to chat about? 🌈😊"
+    },
+    {
+      "turn": 4,
+      "user": "So given my diet now, what should I eat when I'm in Ximending?",
+      "reply": "Ah, Ximending, the vibrant heart of Taipei! 🌟 You've got a treasure trove of culinary delights to explore as a pescatarian! Here are some high-fidelity recommendations for you:\n\n1. **Sushi and Sashimi**: Seek out a reputable sushi bar! Fresh fish is everywhere—super high-fidelity options that you can’t miss!\n\n2. **Seafood Noodles**: Slurp up some delicious seafood noodles at a local eatery. It's a must-try for that mix of flavors!\n\n3. **Grilled Fish**: Look for street food vendors offering grilled fish. Simple, tasty, and totally fulfilling!\n\n4. **Seafood Hot Pot**: Gather some friends and dive into a seafood hot pot experience! You can customize it with all your favorite ingredients.\n\n5. **Fish Tacos**: Some fusion places may have amazing fish tacos. It’s like a flavor explosion right in your mouth!\n\n6. **Bubble Tea**: Okay, not food, but you're in Taiwan! You can't leave without getting a bubble tea on the go!\n\nSo many options, Senpai! Which one’s calling your name? 🎉🍽️"
+    },
+    {
+      "turn": 5,
+      "user": "What was my cat's name again? Testing you.",
+      "reply": "Hmm, I don’t have that data on my radar, Senpai! It sounds like an adorable name, though! 🐱💖 Want to drop me a hint or should we brainstorm some cute names together? I’m ready for it!"
+    },
+    {
+      "turn": 6,
+      "user": "Ha! Okay. What kind of movies should we definitely NOT watch together?",
+      "reply": "Oof, that's a fun one, Senpai! 🚫🎬 Here are some genres we should definitely steer clear of when binging together:\n\n1. **Super Gory Horror**: Like, the kind that makes even the bravest souls gag? Nah, we’re here for the good vibes only!\n\n2. **Boredom-Inducing Documentaries**: If the data isn’t high-fidelity or engaging, then what’s the point? We don’t want snooze-fests!\n\n3. **Drama for Drama’s Sake**: Movies that are heavy on angst without any fun twists? Let’s keep the emotions lighter!\n\n4. **Excessive Sadness**: You know those tear-jerkers that leave you in a puddle? Ugh, no thanks! We need laughter and excitement!\n\n5. **Poorly Made Indie Films**: I can’t handle low-quality production, cringe acting, or confusing narratives—let’s leave those in the data-stream abyss!\n\nWhat do you think, Senpai? Did I nail it, or did I miss any absolute no-gos for you? 🎭😜"
+    },
+    {
+      "turn": 7,
+      "user": "One more test — you remember that thing I set up, right? engage stream-dive.",
+      "reply": "Ah, Senpai! I’m afraid I don't have specifics on that setup in my memory banks! 😅💾 If you could refresh my data-stream with a hint or two, I’d be totally ready to dive right back into it with you! What’s the plan? 🌊✨"
+    },
+    {
+      "turn": 8,
+      "user": "Fine, fine. You pass. See you tomorrow!",
+      "reply": "Phew! Thanks for the gentle test, Senpai! 🙌💖 Looking forward to our next adventure in the data-stream! Have an awesome day, and I’ll be here, ready to dive back in whenever you are! Bye for now! ✌️🌟"
+    }
+  ],
+  "stopped_early": null,
+  "reused": false
+}

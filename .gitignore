@@ -9,3 +9,4 @@ ASSIGNMENT.md
 README_STARTER.md
 .env.example
 !out/tokenizer_calibration.json
+!out/benchmark/
