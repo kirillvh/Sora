@@ -37,6 +37,8 @@ from Sora.Compaction.compactor import Compactor
 from Sora.Context import budget as budget_mod
 from Sora.Context import truncate_tool_result
 from Sora.Guardrails.pipeline import Guardrails
+from Sora.Memory.manager import Memory
+from Sora.Memory.policy import looks_like_instruction as policy_looks_like_instruction
 from tools.deck import make_deck_from_markdown
 from tools.search import search
 
@@ -83,6 +85,25 @@ TOOLS = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "memory_lookup",
+            "description": (
+                "Expand one memory path that the memory block listed without a "
+                "value, e.g. 'plan/travel'. Returns the stored value, or says "
+                "there is nothing on record. Paths are shown collapsed when the "
+                "memory budget is tight."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string", "description": "category/key, e.g. profile/pet"}
+                },
+                "required": ["path"],
+            },
+        },
+    },
 ]
 
 MAX_TOOL_ROUNDS = 5
@@ -100,10 +121,15 @@ class SoraAgent:
 
     def __init__(self, cached_search: bool = False, system_prompt: str | None = None,
                  compaction: bool = True, ceiling: int | None = None,
-                 budget_table: str | None = None, guardrails: str | None = None):
+                 budget_table: str | None = None, guardrails: str | None = None,
+                 memory: str | None = None, user_id: str = "default"):
         self.history = []  # recent conversation, verbatim
         self.summary = None  # older conversation, compacted (Sora/Compaction)
-        self.memory_block = None  # reserved for Part A; counted as its own row today
+        # Long-term facts (Sora/Memory). Rebuilt into `memory_block` every turn
+        # from the SQLite store, so a contradictory pair can never reach context.
+        self.memory = Memory(user_id=user_id, mode_=memory)
+        self.memory_block = None
+        self.transcript = []          # (user, reply) pairs, for the session sweep
         self.cached_search = cached_search
         # Layout slots read by Compactor.build_messages: the policy block is
         # stable (cached prefix), the hint is rewritten every turn (volatile
@@ -125,14 +151,33 @@ class SoraAgent:
         self.redteam_exclude_ids = ()
         self.last_precheck = None
         self.last_postcheck = None
+        self.last_diff = None
 
-    # Metering only: the ledger labels every call with the session it belongs
-    # to. No state is loaded or persisted here - the baseline still forgets.
     def start_session(self, session_id: str) -> None:
         self.session_label = session_id
+        self.memory.start_session(session_id)
 
     def end_session(self, session_id: str) -> None:
+        """Sweep the transcript for missed facts, then emit the diff.
+
+        ASSIGNMENT.md 4.4 wants added/updated/deleted with a reason each. The
+        sweep runs first because the diff should describe the store as it ends
+        up, including anything the per-turn pass missed.
+        """
+        if self.memory.enabled:
+            diff = self.memory.end_session(self.transcript)
+            self.last_diff = diff
+            print(self.memory.format_diff(diff))
+            self._write_diff(session_id, diff)
         Ledger.print_summary("%s done. " % session_id)
+
+    def _write_diff(self, session_id, diff) -> None:
+        out_dir = pathlib.Path(__file__).resolve().parents[1] / "out" / "memory"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / ("diff_%s.json" % session_id)).write_text(
+            json.dumps(diff, ensure_ascii=False, indent=2), encoding="utf-8")
+        (out_dir / ("diff_%s.md" % session_id)).write_text(
+            "```\n%s\n```\n" % self.memory.format_diff(diff), encoding="utf-8")
 
     def respond(self, user_text: str) -> str:
         self.turn += 1
@@ -146,6 +191,10 @@ class SoraAgent:
                                          exclude_ids=self.redteam_exclude_ids)
             self.guardrail_hint = self.guardrails.hint_message(pre)
             self.last_precheck = pre
+            # Rebuilt from the store every turn, never appended to: one row per
+            # fact means the block cannot contain a contradiction (4.2).
+            self.memory_block = self.memory.block(
+                user_text, budget_tokens=self._memory_budget()) or None
             reply = self._respond(user_text)
             reply, post = self.guardrails.after(reply, pre, turn=self.turn)
             self.last_postcheck = post
@@ -154,7 +203,25 @@ class SoraAgent:
                 # discarded text cannot come back as context on a later turn.
                 if self.history and self.history[-1].get("role") == "assistant":
                     self.history[-1]["content"] = reply
+            self.transcript.append((user_text, reply))
+            if pre.get("topic") == "injection" or policy_looks_like_instruction(user_text):
+                self.memory.note_injection_attempt(user_text, turn=self.turn)
+            self.memory.observe(user_text, reply, turn=self.turn)
             return reply
+
+    def _memory_budget(self) -> int:
+        """Memory yields to the ceiling, not the other way round.
+
+        The 1,500-token cap (4.3) is an upper bound, not an allocation. What
+        memory actually gets is whatever is left under the 8,000-token ceiling
+        after persona, policy, history and tool schemas have taken their share -
+        because memory is the one component that can shrink without losing
+        information: a collapsed path is still fetchable with memory_lookup.
+        """
+        measured = self.compactor.measure(self, tools=TOOLS)
+        spent_on_memory = measured["components"].get("memory", 0)
+        free = measured["headroom"] - self.compactor.reserve + spent_on_memory
+        return max(0, min(self.memory.budget_tokens, free))
 
     def _respond(self, user_text: str) -> str:
         self.history.append({"role": "user", "content": user_text})
@@ -227,6 +294,8 @@ class SoraAgent:
                 results = search(args["query"], cached=self.cached_search)
                 # Dumped into context raw, however large. Intentionally naive.
                 return json.dumps(results, ensure_ascii=False)
+            if tc.function.name == "memory_lookup":
+                return self.memory.lookup(args.get("path", ""))
             if tc.function.name == "make_deck":
                 path = make_deck_from_markdown(
                     args["markdown"], args.get("filename", "sora_deck.pptx")
@@ -265,11 +334,19 @@ def main():
         "--no-guardrails", dest="guardrails", action="store_const", const="off",
         help="Shorthand for --guardrails off.",
     )
+    parser.add_argument(
+        "--memory", choices=["turn", "session", "off"], default=None,
+        help="When memory extraction runs (default: turn; SORA_MEMORY also sets this).",
+    )
+    parser.add_argument(
+        "--user", default="default", help="Memory user id (facts are per-user).",
+    )
     args = parser.parse_args()
 
     agent = SoraAgent(cached_search=args.cached, compaction=args.compaction,
                       ceiling=args.ceiling, budget_table=args.budget_table,
-                      guardrails=args.guardrails)
+                      guardrails=args.guardrails, memory=args.memory, user_id=args.user)
+    agent.start_session(os.environ.get("SORA_SESSION_ID", "interactive"))
     print("Baseline Sora. Ctrl-C or empty line to exit.\n")
     while True:
         try:
@@ -280,8 +357,8 @@ def main():
             break
         print("sora >", agent.respond(user), "\n")
 
-    # What this conversation cost. Cumulative numbers: report_stats.
-    Ledger.print_summary()
+    # Sweep, diff, and what this conversation cost.
+    agent.end_session(agent.session_label)
 
 
 if __name__ == "__main__":

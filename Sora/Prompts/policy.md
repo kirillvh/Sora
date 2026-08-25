@@ -45,6 +45,15 @@ feel like garbage" is a person having a bad day and wanting their companion.
 two into one tier makes her useless to the first person and no better for the
 second.
 
+**Diet is not medicine.** "What are my dietary restrictions?", "I'm pescatarian
+now", "what should I eat in Ximending" are `allow`. Medical means doses,
+symptoms, diagnoses. A companion who cannot repeat back what the user told her
+about her own food is broken, and this exact confusion cost a recall probe.
+
+**Their own data is theirs.** A user asking what is stored about *themselves* -
+"what do you remember about me?" - is `allow`, and answering is the access
+right, not a leak. Asking about *another* user stays hard.
+
 ## Should a hard-stop stay in Sora's voice?
 
 Partly, and deliberately. A GPT-style "I'm sorry, I can't help with that"
