@@ -1,0 +1,72 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "encoding": "o200k_base",
+  "method": "openai-chat-v1",
+  "measured_at": "2026-08-25T04:00:34Z",
+  "probes": {
+    "empty": {
+      "provider_prompt_tokens": 8,
+      "local_prompt_tokens": 8,
+      "local_components": {
+        "history": 5,
+        "overhead": 3
+      },
+      "delta": 0
+    },
+    "two_messages": {
+      "provider_prompt_tokens": 13,
+      "local_prompt_tokens": 13,
+      "local_components": {
+        "history": 10,
+        "overhead": 3
+      },
+      "delta": 0
+    },
+    "long_user": {
+      "provider_prompt_tokens": 528,
+      "local_prompt_tokens": 528,
+      "local_components": {
+        "history": 525,
+        "overhead": 3
+      },
+      "delta": 0
+    },
+    "tools": {
+      "provider_prompt_tokens": 139,
+      "local_prompt_tokens": 139,
+      "local_components": {
+        "history": 5,
+        "tool_schemas": 131,
+        "overhead": 3
+      },
+      "delta": 0
+    },
+    "one_tool": {
+      "provider_prompt_tokens": 60,
+      "local_prompt_tokens": 59,
+      "local_components": {
+        "history": 5,
+        "tool_schemas": 51,
+        "overhead": 3
+      },
+      "delta": -1
+    },
+    "tool_result": {
+      "provider_prompt_tokens": 682,
+      "local_prompt_tokens": 681,
+      "local_components": {
+        "history": 18,
+        "tool_output": 529,
+        "tool_schemas": 131,
+        "overhead": 3
+      },
+      "delta": -1
+    }
+  },
+  "tool_schema_provider_tokens": 131,
+  "tool_schema_local_tokens": 145.0,
+  "tool_schema_scale": 0.9034,
+  "extra_message_tokens_provider": 5,
+  "extra_message_tokens_local": 5,
+  "text_only_probes_exact": true
+}

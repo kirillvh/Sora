@@ -7,3 +7,7 @@ python-dotenv==1.2.3
 # Live search only (the one flagship run in §9). Floor, not a pin: DDG scraping
 # breaks with the site, so newer is better here.
 ddgs>=9.0
+# Local token accounting for the ledger (Sora/Ledger/tokenizer.py). Pinned:
+# encodings are downloaded and cached on first use, so an offline box falls
+# back to a labelled char-based estimate rather than failing.
+tiktoken==0.14.0

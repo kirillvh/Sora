@@ -207,10 +207,7 @@ def _record(ctx, model, raw_messages, clean_messages, tools, kwargs, resp, error
     msg = _response_message(resp)
     text = getattr(msg, "content", None) or ""
     tool_calls = _tool_calls_of(msg)
-    completion_local = tokenizer.count_text(
-        text + "".join((tc.get("arguments") or "") + (tc.get("name") or "") for tc in tool_calls),
-        model,
-    )
+    completion_local = tokenizer.count_completion(text, tool_calls, model)
 
     usage = _usage_dict(resp)
     ptok = _provider_tokens(usage)
@@ -239,13 +236,20 @@ def _record(ctx, model, raw_messages, clean_messages, tools, kwargs, resp, error
         "prefix": prefix,
     }
 
-    cost = pricing.resolve(
-        model,
-        usage.get("cost"),
-        prompt_tokens if prompt_tokens is not None else local["total"],
-        ptok.get("completion") if ptok.get("completion") is not None else completion_local,
-        cached,
-    )
+    if error is not None and not usage:
+        # The request blew up before the provider reported usage. Assume
+        # unbilled rather than pricing our local estimate - a failed call must
+        # not inflate the spend total, but it still gets a line in the trace.
+        cost = {"usd": 0.0, "source": "error_unbilled", "provider_usd": None,
+                "table_usd": None, "currency": "USD"}
+    else:
+        cost = pricing.resolve(
+            model,
+            usage.get("cost"),
+            prompt_tokens if prompt_tokens is not None else local["total"],
+            ptok.get("completion") if ptok.get("completion") is not None else completion_local,
+            cached,
+        )
     if isinstance(usage.get("cost_details"), dict):
         cost["cost_details"] = usage["cost_details"]
 
@@ -339,10 +343,13 @@ def _sampling(kwargs, model, tools):
 def _accumulate(record):
     with _lock:
         _totals["calls"] += 1
-        if record["response"]["error"]:
+        failed = bool(record["response"]["error"])
+        if failed:
             _totals["errors"] += 1
         prov = record["tokens"]["provider"]
-        loc = record["tokens"]["local"]
+        loc = record["tokens"]["local"] if not failed else {}
+        # Local counts are a fallback for endpoints that report no usage; a
+        # failed call contributes nothing, so errors cannot inflate the total.
         _totals["prompt_tokens"] += prov.get("prompt") or loc.get("prompt") or 0
         _totals["completion_tokens"] += prov.get("completion") or loc.get("completion") or 0
         _totals["cached_prompt_tokens"] += prov.get("cached_prompt") or 0

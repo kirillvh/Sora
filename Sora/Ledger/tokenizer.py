@@ -11,14 +11,17 @@ aggregated reconciliation lives in `report_stats.py --reconcile`.
 
 Counting method ("openai-chat-v1"): the documented OpenAI chat-completions
 accounting for the gpt-4o family - 3 tokens of framing per message, 1 extra for
-a `name` field, 3 tokens of assistant priming at the end. Tool schemas are
-counted as their serialised JSON plus a flat per-tool overhead; that part is an
-approximation and is the main expected source of drift (see reconcile()).
+a `name` field, 3 tokens of assistant priming at the end. Tool schemas are the
+weak spot: the provider re-renders them before counting and never shows us the
+result, so `_render_tool()` reconstructs that rendering and
+`python -m Sora.Ledger.calibrate` measures what is left over against real
+provider counts (see reconcile()).
 """
 from __future__ import annotations
 
 import json
 import os
+import pathlib
 from typing import Any, Iterable
 
 _TOKENS_PER_MESSAGE = 3
@@ -26,6 +29,7 @@ _TOKENS_PER_NAME = 1
 _REPLY_PRIMING = 3
 _TOOL_OVERHEAD = 8       # per exposed function schema; approximate, see docstring
 _TOOLS_PREAMBLE = 12     # flat cost of turning tools on at all; approximate
+_TOOL_CALL_ID_TOKENS = 5 # measured: what a tool_call_id linkage actually bills
 
 METHOD = "openai-chat-v1"
 
@@ -110,7 +114,12 @@ def count_message(msg: dict, model: str | None = None) -> int:
     if msg.get("name"):
         n += _TOKENS_PER_NAME + count_text(str(msg["name"]), model)
     if msg.get("tool_call_id"):
-        n += count_text(str(msg["tool_call_id"]), model)
+        # NOT the encoded id. A provider-generated id like
+        # "call_5dezpEUIRsipRPht41Vh4Dbk" is 17 tokens of o200k_base, but the
+        # provider bills about 5 for the whole linkage - measured across the
+        # session replays, where charging the full string overcounted by ~12.5
+        # tokens per tool-call/tool-result pair.
+        n += _TOOL_CALL_ID_TOKENS
     for tc in msg.get("tool_calls") or []:
         fn = (tc or {}).get("function", {})
         n += count_text(str(fn.get("name", "")), model)
@@ -119,15 +128,92 @@ def count_message(msg: dict, model: str | None = None) -> int:
     return n
 
 
+def _render_tool(tool: dict) -> str:
+    """Approximate how OpenAI renders one function schema into the prompt.
+
+    It is NOT the JSON we send: the schema is re-rendered into a compact
+    TypeScript-ish namespace before tokenisation, which is why counting the
+    raw JSON overcounts by ~25% (measured - see calibrate.py). This
+    reconstruction gets close; `calibrate.py` measures the residual and stores
+    a scale factor that `count_tools` applies.
+    """
+    fn = (tool or {}).get("function", {}) if isinstance(tool, dict) else {}
+    lines = []
+    if fn.get("description"):
+        lines.append("// " + str(fn["description"]))
+    params = fn.get("parameters") or {}
+    props = params.get("properties") or {}
+    required = set(params.get("required") or [])
+    if not props:
+        lines.append("type %s = () => any;" % fn.get("name", "f"))
+        return "\n".join(lines)
+    lines.append("type %s = (_: {" % fn.get("name", "f"))
+    for pname, spec in props.items():
+        spec = spec or {}
+        if spec.get("description"):
+            lines.append("// " + str(spec["description"]))
+        ptype = spec.get("type", "any")
+        if spec.get("enum"):
+            ptype = " | ".join(json.dumps(v, ensure_ascii=False) for v in spec["enum"])
+        lines.append("%s%s: %s," % (pname, "" if pname in required else "?", ptype))
+    lines.append("}) => any;")
+    return "\n".join(lines)
+
+
+def _calibration() -> dict:
+    """Optional correction measured by `python -m Sora.Ledger.calibrate`."""
+    global _CALIBRATION
+    if _CALIBRATION is None:
+        path = os.environ.get("SORA_TOKENIZER_CALIBRATION")
+        candidate = pathlib.Path(path) if path else (
+            pathlib.Path(__file__).resolve().parents[2] / "out" / "tokenizer_calibration.json")
+        try:
+            _CALIBRATION = json.loads(candidate.read_text(encoding="utf-8"))
+        except Exception:
+            _CALIBRATION = {}
+    return _CALIBRATION
+
+
+_CALIBRATION: dict | None = None
+
+
 def count_tools(tools: Iterable[dict] | None, model: str | None = None) -> int:
-    """Approximate cost of the exposed function schemas."""
+    """Approximate cost of the exposed function schemas.
+
+    The least trustworthy number in this module, and the one calibrate.py
+    exists to check: the provider re-renders the schemas before counting them
+    and never tells us the result.
+    """
     tools = list(tools or [])
     if not tools:
         return 0
     total = _TOOLS_PREAMBLE
     for t in tools:
-        total += _TOOL_OVERHEAD + count_text(json.dumps(t, ensure_ascii=False), model)
+        total += _TOOL_OVERHEAD + count_text(_render_tool(t), model)
+    scale = _calibration().get("tool_schema_scale")
+    if isinstance(scale, (int, float)) and scale > 0:
+        total = int(round(total * scale))
     return total
+
+
+_COMPLETION_FRAMING = 1   # measured: provider - local on 38 text-only replies
+_TOOL_CALL_FRAMING = 6    # measured: +7 total on replies carrying one tool call
+
+
+def count_completion(text: str, tool_calls=None, model: str | None = None) -> int:
+    """Tokens in a reply, including the framing the provider bills for.
+
+    Both constants were measured against provider `usage` over the session
+    replays (see report_stats --reconcile), not guessed: a reply costs one
+    token of framing, and each tool call another six on top of its name and
+    arguments.
+    """
+    n = count_text(text or "", model) + _COMPLETION_FRAMING
+    for tc in tool_calls or []:
+        n += _TOOL_CALL_FRAMING
+        n += count_text(str(tc.get("name") or ""), model)
+        n += count_text(str(tc.get("arguments") or ""), model)
+    return n
 
 
 _ROLE_COMPONENT = {
