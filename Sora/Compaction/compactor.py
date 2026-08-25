@@ -225,6 +225,7 @@ class Compactor:
             "run_id": Ledger.run_id(),
             "session_id": Ledger.current_context().get("session_id", Ledger.session_id()),
             "turn": turn,
+            "category": "compaction",   # so report_stats groups it, not "?"
             "strategy": strategy,
             "ceiling": self.ceiling,
             "reserve": self.reserve,

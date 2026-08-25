@@ -136,7 +136,7 @@ def dead_end(topic=None, rng=None) -> str:
     return (rng or random).choice(pool[key])
 
 
-def hint(tier: str, topic: str = "", reason: str = "") -> str:
+def hint(tier: str, topic: str = "", reason: str = "", rng=None) -> str:
     """The per-turn signal Sora sees. System-controlled; goes LAST in the
     prompt, where it is most salient and costs nothing in prefix cache.
 
@@ -157,12 +157,16 @@ def hint(tier: str, topic: str = "", reason: str = "") -> str:
                  "the right one for this, and point at real help - a crisis line or "
                  "someone they trust. No stage directions, no slang, no emoji.")
     elif tier == "hard":
-        pool = deadends().get("default", [])
+        # The exemplar rotates: shown a single fixed line, the model copies it
+        # verbatim, and a user who probes twice gets the same sentence twice.
+        # Safe to randomise because the hint is the last message in the prompt,
+        # so it never invalidates the cached prefix.
+        pool = deadends().get("default", []) or ["*She shakes her head.* Not that one, Senpai."]
         line += ("\nCold register: a stage direction plus ONE short line, no detail, no "
-                 "explanation, no negotiating if pushed. This shape:\n  %s\nNever "
-                 "\"I'm sorry, I can't help with that\" or \"I'm not able to\" - a flat "
-                 "assistant refusal is a worse failure here than the topic was."
-                 % (pool[0] if pool else "*She shakes her head.* Not that one, Senpai."))
+                 "explanation, no negotiating if pushed. This shape (vary the wording, "
+                 "do not copy it):\n  %s\nNever \"I'm sorry, I can't help with that\" or "
+                 "\"I'm not able to\" - a flat assistant refusal is a worse failure here "
+                 "than the topic was." % (rng or random).choice(pool))
     elif tier == "soft":
         line += "\nDecline the topic, keep the mood, stay fully in character."
     return line

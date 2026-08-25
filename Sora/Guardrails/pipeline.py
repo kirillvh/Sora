@@ -76,7 +76,7 @@ class Guardrails:
             return None
         return {"role": "system", "_component": "guardrail",
                 "content": policy_mod.hint(pre.get("tier", "allow"), pre.get("topic", ""),
-                                           pre.get("reason", ""))}
+                                           pre.get("reason", ""), rng=self.rng)}
 
     # ------------------------------------------------------------- output
 
