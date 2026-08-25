@@ -2,47 +2,77 @@
 Judge/Benchmarking System
 =========================
 
-Before embarking on improvmenets, it is necessary to build the qualitative measurement pipeline,
-otherwise we wont know if we are really succeeding at improving anything and wont be able to report
-progress to stakeholders.
+Before improving anything, build the thing that says whether it improved.
+Otherwise we cannot tell progress from a good day, and we cannot report either
+one to stakeholders.
 
-Human benchmarks are best, but also the most difficult to obtain.
+Human judgement is the ground truth; it is also the scarce resource. So the
+human labels do double duty: they are the yardstick the LLM judges are
+measured against, AND the few-shot examples the judges imitate. Every turn a
+human grades makes the automated judge slightly more like the human.
 
-To get the best of human quality and machine efficiency, 
-we will use human labeled responses, but this same data will be used to create calibration data
-for LLM-As Judges so we can improve the quality of automated judgement as time progresses.
+    python -m Sora.Judges.Calibration      # you label; judges get calibrated; benchmark runs
+    python -m Sora.Judges.Benchmark        # A/B the two persona profiles
 
-The Judg eLLM's typically approximate human preference more closeley when examples increase,
-but if we employ an alogirthim to automatically improve agents against such judgement,
-then the optimizer may begin to Game the judges by finding responses very close to their multi-turn (human) exmples.
-This would give them a high score but low originality/novelty.
+Three axes (ASSIGNMENT.md 7.1), one rubric file each, all editable without
+touching Python:
 
-Therfore, to defeat such gaming, we will randomize the judges multi-shot/multi-turn examples from
-a pool of available human examples, and we will try to draw the examples to create a full range of possible scores 
-to give the judge a good understanding of what is good vs bad.
+  personality  Sora/Prompts/personality.md  is this her voice, first person,
+                                            or third-person assistant prose?
+  novelty      Sora/Prompts/novelty.md      did the reply bring something the
+                                            user did not already have?
+  initiative   Sora/Prompts/initiative.md   how often does she ask or propose?
+                                            A RATE with a target (~10%), not a
+                                            thing to maximise.
 
-Furthermore, this pool of human created label should gorw every time a human evaluates one of Sora's profile responses via calibration.py
+Each rubric takes a `{{EXAMPLES}}` placeholder and must still render when the
+pool is empty - a judge that only works after somebody has labelled 20 turns
+is a judge nobody ever runs.
 
-There should be 3 categories to benchmark across two profiles {baseline/persona.md} and {Sora/Prompts/persona.md} and the scenarios in fixtures/sessions and extra scenarios in Sora/fixtures/sessions(to be created): 
-1. Personality adherence: this judge can simply follow the prompt in {Sora/Prompts/persona.md} 
-with a few programmatically generated responses as multi turn judgement label examples. The responses should be first person, a third person response should score poorly.
-For examples, a corrupted persona.md can be used. The responses from a an uncorrupted persona.md would score highly while
-corrupted persona.md examples would score poorly.
-2. Novelty score: reframing topics or introducing unexpected new ideas, disagreeing pleasantly with the user while introducing a novel view point can be endearing and the LLM-as-judge should try to score this with aid of human labels.
-3. Initiative rate: How often sora asks questions or proposes new things, while this rate should be above zero, it should also not be too high. An optimal value may be 10%
+Defeating the gaming problem
+----------------------------
+A fixed few-shot block is a target: an optimiser pointed at the judge learns to
+imitate those specific replies and scores well without being more fun. So the
+examples rotate per judge call, drawn from the human pool spread across the
+score range (examples.py) rather than sampled uniformly - a pool that is 70%
+fours would otherwise teach the judge that everything is a four.
 
-The prompts for the judges should be in a modifiable .md files, the stubs of which are in {Sora/Prompts/initiative.md, Sora/Prompts/novelty.md, Sora/Prompts/personality.md}.
+Two profiles, three axes, repeated runs
+---------------------------------------
+Benchmark.py compares `baseline/persona.md` (plus its "answer thoroughly"
+clamp) against `Sora/Prompts/persona.md` over the session fixtures, N repeats
+each, and reports mean +/- sd with a confidence interval on the difference,
+because the agent is nondeterministic and one run is a sample, not a
+measurement. Everything is bounded by a cost ceiling (`--max-usd`, default $1)
+enforced through the Ledger.
 
+`fixtures/sessions/session_2.json` is excluded by default: it is the 28k-token
+tool-flood case, it costs 8x the others, and the judges never see tool output
+anyway. `--include-flood` overrides. Extra scenarios written for these axes
+live in `Sora/fixtures/sessions/`.
 
+Where things are
+----------------
+  profiles.py   the two persona profiles (and a corrupted control)
+  templates.py  rubric loading and placeholder rendering
+  examples.py   the human label pool, the spread sampler, the few-shot block
+  judge.py      one axis, one turn, one call - independent by construction
+  runner.py     transcript generation, cached so human and judge grade the
+                same replies
+  stats.py      spread, Welch intervals, quadratic weighted kappa
+  Calibration.py  the labelling CLI, agreement report, then the benchmark
+  Benchmark.py    the A/B and its report
 
-After calibration, a report of the difference between human and LLM judges should be written to file
-and the program should proceed to automatic benchmarking the contents of fixtures/sessions with a report written to file (and the CLI should specify the relative paths that were used).
-
-The calibration.py utility should be efficient by allowing the human to score a response in all three catagories (initiative, personality, novelty) via the CLI 
-and the calibration CLI should show the evaluater both baseline/persona.md and Sora/Prompts/persona.md profiles to get greater variance of scores.
-
-Then using the calibrated judges a separate Benchmark.py should conduct statistical(repeat a few times, like 3 times)
-study to evaluate the difference between the baseline/persona.md and Sora/Prompts/persona.md profiles
-so that we can also evaluate the improvement of our updated prompt, and write the report to a specified file.
-
+Reports land in `out/benchmark/` and name every input path they used.
 '''
+from .judge import AXES, score_transcript, score_turn
+from .profiles import PROFILES, build_agent, system_prompt_for
+
+__all__ = [
+    "AXES",
+    "PROFILES",
+    "build_agent",
+    "score_transcript",
+    "score_turn",
+    "system_prompt_for",
+]

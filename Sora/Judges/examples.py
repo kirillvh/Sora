@@ -36,8 +36,9 @@ REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 DEFAULT_POOL = REPO_ROOT / "Sora" / "Judges" / "labels" / "pool.jsonl"
 
 DEFAULT_MAX_EXAMPLES = 6
-DEFAULT_MAX_TOKENS = 600      # ceiling for the whole rendered block
-DEFAULT_MAX_REPLY_CHARS = 320  # per example, so one rambling reply cannot own the block
+DEFAULT_MAX_TOKENS = 600       # ceiling for the whole rendered block
+DEFAULT_MAX_REPLY_CHARS = 240  # per example, so one rambling reply cannot own the block
+DEFAULT_MAX_USER_CHARS = 140
 
 SCORE_RANGE = (1, 2, 3, 4, 5)
 

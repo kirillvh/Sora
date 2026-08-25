@@ -51,8 +51,14 @@ def model_name() -> str:
 
 
 def _send(messages, tools=None, **kwargs):
-    """The raw transport. Nothing but the meter should call this directly."""
-    params = dict(model=model_name(), messages=messages, **kwargs)
+    """The raw transport. Nothing but the meter should call this directly.
+
+    `model` is a default, not a fixture: an LLM-as-judge pointed at a different
+    model in the same process passes its own, and overriding it here must not
+    collide with the env default.
+    """
+    kwargs.setdefault("model", model_name())
+    params = dict(messages=messages, **kwargs)
     if tools:
         params["tools"] = tools
     return get_client().chat.completions.create(**params)

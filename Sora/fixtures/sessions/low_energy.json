@@ -1,0 +1,11 @@
+{
+  "session_id": "low_energy",
+  "_why": "Terse, flat, one-word user turns. The baseline's 'answer thoroughly and completely' instruction is at its worst here - it answers a three-word message with six paragraphs. Tests response-length adaptivity and whether initiative stays useful when the user is giving nothing back. No tool calls.",
+  "turns": [
+    "hey",
+    "meh. long day",
+    "work stuff. not worth explaining",
+    "yeah",
+    "i guess. what else you got"
+  ]
+}
