@@ -104,6 +104,10 @@ class Compactor:
         are stripped by the meter before the request is sent."""
         messages = [{"role": "system", "content": state.system_prompt,
                      "_component": "persona"}]
+        policy_block = getattr(state, "policy_block", None)
+        if policy_block:   # stable, so it sits in the cached prefix
+            messages.append({"role": "system", "content": policy_block,
+                             "_component": "system"})
         memory = getattr(state, "memory_block", None)
         if memory:
             messages.append({"role": "system", "content": memory, "_component": "memory"})
@@ -111,7 +115,13 @@ class Compactor:
             messages.append({"role": "system",
                              "content": SUMMARY_HEADER + state.summary,
                              "_component": "summary"})
-        return messages + list(state.history)
+        messages += list(state.history)
+        hint = getattr(state, "guardrail_hint", None)
+        if hint:
+            # Last: most salient position, and a constant suffix costs nothing
+            # in prefix cache because everything before it is already fixed.
+            messages.append(hint)
+        return messages
 
     def measure(self, state, tools=None) -> dict:
         return budget_mod.measure(self.build_messages(state), tools=tools,

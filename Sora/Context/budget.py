@@ -20,7 +20,7 @@ from Sora.Ledger import tokenizer
 
 # Print order. Also the layout order: stable content first, volatile last
 # (ASSIGNMENT.md 5.4), so this list doubles as the cache-friendliness contract.
-COMPONENTS = ("persona", "system", "memory", "summary", "history", "tool_output",
+COMPONENTS = ("persona", "system", "memory", "summary", "history", "tool_output", "guardrail",
               "tool_schemas", "overhead")
 
 LABELS = {
@@ -30,6 +30,7 @@ LABELS = {
     "summary": "history (compacted)",
     "history": "history (verbatim)",
     "tool_output": "tool output",
+    "guardrail": "guardrail hint",
     "tool_schemas": "tool schemas",
     "overhead": "reply priming",
 }

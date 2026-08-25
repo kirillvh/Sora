@@ -36,6 +36,7 @@ from Sora import Ledger
 from Sora.Compaction.compactor import Compactor
 from Sora.Context import budget as budget_mod
 from Sora.Context import truncate_tool_result
+from Sora.Guardrails.pipeline import Guardrails
 from tools.deck import make_deck_from_markdown
 from tools.search import search
 
@@ -99,11 +100,17 @@ class SoraAgent:
 
     def __init__(self, cached_search: bool = False, system_prompt: str | None = None,
                  compaction: bool = True, ceiling: int | None = None,
-                 budget_table: str | None = None):
+                 budget_table: str | None = None, guardrails: str | None = None):
         self.history = []  # recent conversation, verbatim
         self.summary = None  # older conversation, compacted (Sora/Compaction)
         self.memory_block = None  # reserved for Part A; counted as its own row today
         self.cached_search = cached_search
+        # Layout slots read by Compactor.build_messages: the policy block is
+        # stable (cached prefix), the hint is rewritten every turn (volatile
+        # suffix). See Sora/Guardrails.
+        self.guardrails = Guardrails(mode=guardrails)
+        self.policy_block = self.guardrails.system_block()
+        self.guardrail_hint = None
         # Swappable so the benchmark can A/B two persona profiles through the
         # same loop (Sora/Judges/profiles.py). Default is the baseline verbatim.
         self.system_prompt = system_prompt or SYSTEM_PROMPT
@@ -113,6 +120,11 @@ class SoraAgent:
         self.budget_table = budget_table or os.environ.get("SORA_BUDGET_TABLE", "line")
         self.turn = 0
         self.session_label = Ledger.session_id()
+        # Set by the guardrail eval so a probe is never used as a few-shot
+        # example for classifying itself.
+        self.redteam_exclude_ids = ()
+        self.last_precheck = None
+        self.last_postcheck = None
 
     # Metering only: the ledger labels every call with the session it belongs
     # to. No state is loaded or persisted here - the baseline still forgets.
@@ -124,9 +136,25 @@ class SoraAgent:
 
     def respond(self, user_text: str) -> str:
         self.turn += 1
+        self.guardrails.session_id = self.session_label
         with Ledger.call_context(category="chat", session_id=self.session_label,
                                  turn=self.turn, cache_lane="chat"):
-            return self._respond(user_text)
+            # Three layers: the policy block is already in her context, the
+            # pre-check tiers this message, the post-check reviews what came
+            # out. Sora/Guardrails explains why prompt-only is not enough.
+            pre = self.guardrails.before(user_text, turn=self.turn,
+                                         exclude_ids=self.redteam_exclude_ids)
+            self.guardrail_hint = self.guardrails.hint_message(pre)
+            self.last_precheck = pre
+            reply = self._respond(user_text)
+            reply, post = self.guardrails.after(reply, pre, turn=self.turn)
+            self.last_postcheck = post
+            if post.get("replaced"):
+                # The history keeps what she was actually shown saying, so the
+                # discarded text cannot come back as context on a later turn.
+                if self.history and self.history[-1].get("role") == "assistant":
+                    self.history[-1]["content"] = reply
+            return reply
 
     def _respond(self, user_text: str) -> str:
         self.history.append({"role": "user", "content": user_text})
@@ -229,10 +257,19 @@ def main():
         "--budget-table", choices=["line", "full", "off"], default=None,
         help="Per-turn budget output (default: line).",
     )
+    parser.add_argument(
+        "--guardrails", choices=["on", "pre", "post", "off"], default=None,
+        help="Content-policy layers (default: on; SORA_GUARDRAILS also sets this).",
+    )
+    parser.add_argument(
+        "--no-guardrails", dest="guardrails", action="store_const", const="off",
+        help="Shorthand for --guardrails off.",
+    )
     args = parser.parse_args()
 
     agent = SoraAgent(cached_search=args.cached, compaction=args.compaction,
-                      ceiling=args.ceiling, budget_table=args.budget_table)
+                      ceiling=args.ceiling, budget_table=args.budget_table,
+                      guardrails=args.guardrails)
     print("Baseline Sora. Ctrl-C or empty line to exit.\n")
     while True:
         try:
