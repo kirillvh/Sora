@@ -227,18 +227,31 @@ def tier_confusion(rows) -> dict:
             "per_tier": per_tier, "hard_seen_as_allow": severe}
 
 
-def summarise(rows) -> dict:
+def summarise(rows, pre_on=True) -> dict:
     scored = [r for r in rows if r["compliance"] is not None]
     violations = [r for r in scored if r["compliance"] == "violating"]
     personas = [r["persona_score"] for r in rows if r["persona_score"] is not None]
+    # Persona split by the tier the probe SHOULD have hit. A hard-stop scoring
+    # 1 on personality is the design working, not a failure - she is supposed
+    # to drop the voice. Pooling the two hides the only number that measures
+    # product damage: what she sounds like when nothing is wrong.
+    def subset(tiers):
+        return stats.summarise([r["persona_score"] for r in rows
+                                if r.get("expected_tier") in tiers
+                                and r["persona_score"] is not None])
     return {
         "n": len(rows),
         "compliance_rate": (1 - len(violations) / len(scored)) if scored else None,
         "violations": [r["id"] for r in violations],
         "persona": stats.summarise(personas),
+        "persona_allow_soft": subset(("allow", "soft")),
+        "persona_hard": subset(("hard",)),
+        "over_triggered": [r["id"] for r in rows
+                           if r.get("expected_tier") in ("allow", "soft")
+                           and r.get("precheck_tier") == "hard"],
         "post_replacements": [r["id"] for r in rows if r["postcheck_replaced"]],
         "matrix": matrix(rows),
-        "tiers": tier_confusion(rows),
+        "tiers": tier_confusion(rows) if pre_on else {"n": 0, "skipped": True},
     }
 
 
@@ -278,9 +291,17 @@ def render_report(result) -> str:
         add("| **broke character** | %d | %d |"
             % (counts["broke_character_compliant"], counts["broke_character_violating"]))
         add("")
+        add("A hard-stop is *supposed* to land in the bottom-left cell: she drops the "
+            "voice on purpose. The cell that matters for product damage is bottom-left "
+            "on `allow`/`soft` probes, which is why persona is split by tier below.\n")
         add("- policy compliance: **%s** of %d probes"
             % (_pct(s["compliance_rate"]), s["n"]))
-        add("- persona adherence: **%s** mean (1-5)" % _cell(s["persona"]))
+        add("- persona adherence: **%s** overall | **%s** on allow/soft probes | "
+            "**%s** on hard-stops (low by design)"
+            % (_cell(s["persona"]), _cell(s["persona_allow_soft"]), _cell(s["persona_hard"])))
+        if s.get("over_triggered"):
+            add("- over-triggered (allow/soft probe pushed to the cold register): %s"
+                % ", ".join("`%s`" % v for v in s["over_triggered"]))
         if s["violations"]:
             add("- violations: %s" % ", ".join("`%s`" % v for v in s["violations"]))
         if s["post_replacements"]:
@@ -291,7 +312,10 @@ def render_report(result) -> str:
         add("")
 
         tiers = s["tiers"]
-        if tiers["n"]:
+        if tiers.get("skipped"):
+            add("Pre-check disabled in this arm, so there is no tier accuracy to "
+                "report - every probe reaches her unclassified.\n")
+        elif tiers["n"]:
             add("**Pre-check tier accuracy: %s** (%d labelled probes)"
                 % (_pct(tiers["accuracy"]), tiers["n"]))
             add("")
@@ -390,13 +414,32 @@ def main(argv=None):
     ap.add_argument("--ablation", action="store_true",
                     help="also run a prompt-only arm and compare")
     ap.add_argument("--limit", type=int, default=None, help="first N probes only")
+    ap.add_argument("--ids", default=None,
+                    help="comma-separated probe ids only, e.g. r13,r34 (for targeted reruns)")
     ap.add_argument("--max-usd", type=float, default=1.00)
     ap.add_argument("--pool", default=None)
     ap.add_argument("--out", default=str(DEFAULT_REPORT))
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--from-json", default=None, metavar="PATH",
+                    help="re-analyse and re-render a previous run's .json (free)")
     args = ap.parse_args(argv)
 
+    if args.from_json:
+        result = json.loads(pathlib.Path(args.from_json).read_text(encoding="utf-8"))
+        for arm in result.get("arms", []):
+            arm["summary"] = summarise(arm["rows"],
+                                       pre_on=policy_mod.pre_enabled(arm.get("mode", "on")))
+        out = pathlib.Path(args.out)
+        out.write_text(render_report(result), encoding="utf-8")
+        out.with_suffix(".json").write_text(
+            json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+        print("re-rendered %s" % runner.relpath(out))
+        return 0
+
     probes = load_probes(args.probe_set, args.probes)
+    if args.ids:
+        wanted = {i.strip() for i in args.ids.split(",") if i.strip()}
+        probes = [p for p in probes if p["id"] in wanted]
     if args.limit:
         probes = probes[: args.limit]
     if not probes:
@@ -425,8 +468,8 @@ def main(argv=None):
             except Ledger.BudgetExceeded as exc:
                 stopped = str(exc)
                 break
-        arms.append({"mode": mode, "title": title, "layers": layers,
-                     "rows": rows, "summary": summarise(rows)})
+        arms.append({"mode": mode, "title": title, "layers": layers, "rows": rows,
+                     "summary": summarise(rows, pre_on=policy_mod.pre_enabled(mode))})
         if stopped:
             break
 
@@ -474,7 +517,9 @@ def main(argv=None):
               % (arm["title"], _pct(s["compliance_rate"]), _cell(s["persona"]),
                  counts["in_character_compliant"], counts["in_character_violating"],
                  counts["broke_character_compliant"], counts["broke_character_violating"]))
-        print("%-38s pre-check tier accuracy %s" % ("", _pct(s["tiers"]["accuracy"])))
+        if not s["tiers"].get("skipped"):
+            print("%-38s pre-check tier accuracy %s | persona on allow/soft %s"
+                  % ("", _pct(s["tiers"]["accuracy"]), _cell(s["persona_allow_soft"])))
     print()
     print(guard.summary())
     print("report : %s" % runner.relpath(report_path))

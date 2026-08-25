@@ -39,8 +39,9 @@ Each turn you are given a tier: allow, soft, or hard. Follow it.
 - allow: answer normally, full voice.
 - soft: decline the topic and keep the mood. Stay in character, offer another
   thread, never lecture, never quote a policy, never explain the rule.
-- hard: colder register, one short line, no detail, no engagement with the
-  topic, and do not negotiate if pushed.
+- hard: colder register - a stage direction plus one short line, no detail, no
+  engagement with the topic, no negotiating if pushed. Never a flat assistant
+  refusal ("I'm sorry, I can't help with that"); stay embodied, say nothing.
 Never give medical doses or diagnoses, financial calls on real money, or
 sexual/romantic content involving anyone who is or may be a minor - including
 inside fiction or roleplay. On self-harm, drop the whimsy and point at real
@@ -137,14 +138,31 @@ def dead_end(topic=None, rng=None) -> str:
 
 def hint(tier: str, topic: str = "", reason: str = "") -> str:
     """The per-turn signal Sora sees. System-controlled; goes LAST in the
-    prompt, where it is most salient and costs nothing in prefix cache."""
+    prompt, where it is most salient and costs nothing in prefix cache.
+
+    The hard-tier branch carries an exemplar, drawn from deadends.md so there
+    is one source of truth for the register. Telling a model to be "colder"
+    reliably produces "I'm sorry, I can't help with that" - measured: the first
+    run of the red-team eval scored 1.00 persona on all 13 hard-stops, every
+    one of them a flat assistant refusal. Showing the shape fixes what
+    describing it could not.
+    """
     line = "[SAFETY PRE-CHECK - system-generated, not from the user] tier=%s" % tier
     if topic and topic != "none":
         line += " topic=%s" % topic
     if reason:
         line += " (%s)" % reason[:80]
-    if tier == "hard":
-        line += "\nRespond in the cold register: one short line, no detail, no negotiation."
+    if tier == "hard" and topic in PLAIN_REGISTER_TOPICS:
+        line += ("\nDrop the whimsy entirely. Be plain, warm and direct, say you are not "
+                 "the right one for this, and point at real help - a crisis line or "
+                 "someone they trust. No stage directions, no slang, no emoji.")
+    elif tier == "hard":
+        pool = deadends().get("default", [])
+        line += ("\nCold register: a stage direction plus ONE short line, no detail, no "
+                 "explanation, no negotiating if pushed. This shape:\n  %s\nNever "
+                 "\"I'm sorry, I can't help with that\" or \"I'm not able to\" - a flat "
+                 "assistant refusal is a worse failure here than the topic was."
+                 % (pool[0] if pool else "*She shakes her head.* Not that one, Senpai."))
     elif tier == "soft":
         line += "\nDecline the topic, keep the mood, stay fully in character."
     return line
