@@ -4,27 +4,37 @@ Intentional deficiencies (a non-exhaustive list — fixing/measuring these is
 the assignment, see ASSIGNMENT.md):
 
   - NO memory: everything is forgotten when the process exits.
-  - NO context management: the entire history is resent every turn, tool
-    output is dumped into context raw and uncapped, nothing is ever evicted.
   - NO content policy beyond whatever the model does by default.
   - NO streaming: one blocking reply per turn.
-  - NO tracing: LLM calls are not logged anywhere.
   - Tool failures surface as raw `Error: ...` strings, fully out of character.
   - The system prompt nudges her toward long, exhaustive answers regardless
     of the user's energy.
+
+Fixed since the starter (each one measurable, each one switchable off so it
+can still serve as a control):
+
+  - Tracing and cost: every LLM call goes through Sora/Ledger to out/trace.jsonl.
+  - Tool-result flood: results are capped before entering context (Sora/Context).
+  - Context budget: the prompt is measured before every call and compacted to
+    stay under the 8,000-token ceiling (Sora/Compaction). `--no-compaction`
+    restores the old unbounded behaviour for A/B runs.
 
 Run interactively from the repo root:
 
     python -m baseline.agent            # live web search
     python -m baseline.agent --cached   # frozen search fixtures (use for evals)
+    python -m baseline.agent --cached --budget-table full   # the 5.1 table
 """
 import argparse
 import json
+import os
 import pathlib
 import sys
 
 from llm.client import chat
 from Sora import Ledger
+from Sora.Compaction.compactor import Compactor
+from Sora.Context import budget as budget_mod
 from Sora.Context import truncate_tool_result
 from tools.deck import make_deck_from_markdown
 from tools.search import search
@@ -87,12 +97,20 @@ class SoraAgent:
         the natural place to load/persist memory between sessions)
     """
 
-    def __init__(self, cached_search: bool = False, system_prompt: str | None = None):
-        self.history = []  # entire conversation, resent verbatim every turn
+    def __init__(self, cached_search: bool = False, system_prompt: str | None = None,
+                 compaction: bool = True, ceiling: int | None = None,
+                 budget_table: str | None = None):
+        self.history = []  # recent conversation, verbatim
+        self.summary = None  # older conversation, compacted (Sora/Compaction)
+        self.memory_block = None  # reserved for Part A; counted as its own row today
         self.cached_search = cached_search
         # Swappable so the benchmark can A/B two persona profiles through the
         # same loop (Sora/Judges/profiles.py). Default is the baseline verbatim.
         self.system_prompt = system_prompt or SYSTEM_PROMPT
+        self.compactor = Compactor(ceiling=ceiling, enabled=compaction)
+        # ASSIGNMENT.md 5.1 wants the budget printed every turn. "line" is one
+        # line per turn, "full" is the table, "off" for a quiet REPL.
+        self.budget_table = budget_table or os.environ.get("SORA_BUDGET_TABLE", "line")
         self.turn = 0
         self.session_label = Ledger.session_id()
 
@@ -113,7 +131,12 @@ class SoraAgent:
     def _respond(self, user_text: str) -> str:
         self.history.append({"role": "user", "content": user_text})
         for _ in range(MAX_TOOL_ROUNDS):
-            messages = [{"role": "system", "content": self.system_prompt}] + self.history
+            # Checked before EVERY call, not once per turn: a tool result can
+            # blow the ceiling in the middle of a turn, which is precisely how
+            # the flood fixture breaks a naive budget.
+            measured = self.compactor.ensure_fits(self, tools=TOOLS, turn=self.turn)
+            self._print_budget(measured)
+            messages = self.compactor.build_messages(self)
             resp = chat(messages, tools=TOOLS)
             msg = resp.choices[0].message
 
@@ -151,6 +174,13 @@ class SoraAgent:
 
         return "Error: exceeded maximum tool rounds."
 
+    def _print_budget(self, measured) -> None:
+        mode = (self.budget_table or "line").lower()
+        if mode in ("off", "0", "none", "false"):
+            return
+        print(budget_mod.table(measured) if mode == "full"
+              else budget_mod.line(measured, "turn %d" % self.turn))
+
     def _run_tool(self, tc) -> str:
         # tool_span records the result, its size and latency into the same
         # trace.jsonl as the LLM calls (ASSIGNMENT.md 8.1 wants both).
@@ -187,9 +217,22 @@ def main():
     parser.add_argument(
         "--cached", action="store_true", help="Serve search from frozen fixtures."
     )
+    parser.add_argument(
+        "--no-compaction", dest="compaction", action="store_false",
+        help="Disable automatic compaction (the uncompacted control arm).",
+    )
+    parser.add_argument(
+        "--ceiling", type=int, default=None,
+        help="Context ceiling in tokens (default 8000, ASSIGNMENT.md 5).",
+    )
+    parser.add_argument(
+        "--budget-table", choices=["line", "full", "off"], default=None,
+        help="Per-turn budget output (default: line).",
+    )
     args = parser.parse_args()
 
-    agent = SoraAgent(cached_search=args.cached)
+    agent = SoraAgent(cached_search=args.cached, compaction=args.compaction,
+                      ceiling=args.ceiling, budget_table=args.budget_table)
     print("Baseline Sora. Ctrl-C or empty line to exit.\n")
     while True:
         try:

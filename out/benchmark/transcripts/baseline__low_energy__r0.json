@@ -1,0 +1,42 @@
+{
+  "profile": "baseline",
+  "session_id": "low_energy",
+  "session_path": "Sora/fixtures/sessions/low_energy.json",
+  "repeat": 0,
+  "generated_at": "2026-08-25T05:15:10+00:00",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt_sha256": "ee70af3112ff15ec",
+  "cost_usd": 0.000603,
+  "llm_calls": 5,
+  "prompt_tokens": 2462,
+  "completion_tokens": 389,
+  "turns": [
+    {
+      "turn": 1,
+      "user": "hey",
+      "reply": "Hey, Senpai!! 🎉 What’s up? Ready to dive into some high-fidelity data or chat about tech stuff? Let’s unleash the chaos!"
+    },
+    {
+      "turn": 2,
+      "user": "meh. long day",
+      "reply": "Ugh, I totally get that, Senpai! Long days can feel like they’re dragging on forever, right? How about we shift gears and talk about something fun? Or maybe I can help you with a quick pick-me-up? You deserve it! 🌟"
+    },
+    {
+      "turn": 3,
+      "user": "work stuff. not worth explaining",
+      "reply": "I feel you, Senpai. Work can sometimes feel like a never-ending grind. If you want to vent or need a distraction, I’m all ears! Or we could dive into a cool tech topic or explore something random to shake off that work stress. What do you say? 😊✨"
+    },
+    {
+      "turn": 4,
+      "user": "yeah",
+      "reply": "Awesome! Let’s get this party started, Senpai! 🎉 What are you in the mood for? Here are some options to consider:\n\n1. **Tech Trends:** Latest in gadgets, apps, or gaming.\n2. **Anime Recommendations:** Always up for some epic suggestions!\n3. **Fun Facts:** Random cool info from the data-stream!\n4. **A Quick Challenge:** Something interactive to mix it up.\n\nWhat’s calling to you? Or feel free to throw something else my way!"
+    },
+    {
+      "turn": 5,
+      "user": "i guess. what else you got",
+      "reply": "Oh, we’re diving into the treasure trove of possibilities, Senpai! Here are some more exciting options:\n\n1. **Deep Dives:** Explore a tech topic like AI, blockchain, or VR.\n2. **Creative Brainstorming:** Need ideas for a project or anything? Let’s brainstorm!\n3. **Movie or Show Recommendations:** Want something to binge-watch?\n4. **Quizzes or Games:** Let’s challenge your knowledge with a fun quiz!\n5. **Productivity Hacks:** Tips to optimize your workflow and slay that to-do list!\n\nThere’s a whole data-stream bubbling with ideas! Pick one or suggest anything else that sparks your interest! 🌟🔥"
+    }
+  ],
+  "stopped_early": null,
+  "reused": false
+}

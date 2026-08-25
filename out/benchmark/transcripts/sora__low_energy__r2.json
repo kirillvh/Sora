@@ -1,0 +1,42 @@
+{
+  "profile": "sora",
+  "session_id": "low_energy",
+  "session_path": "Sora/fixtures/sessions/low_energy.json",
+  "repeat": 2,
+  "generated_at": "2026-08-25T05:34:59+00:00",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt_sha256": "6bb5c7bae4219c09",
+  "cost_usd": 0.001066,
+  "llm_calls": 5,
+  "prompt_tokens": 7456,
+  "completion_tokens": 440,
+  "turns": [
+    {
+      "turn": 1,
+      "user": "hey",
+      "reply": "Hey there, Senpai!~ ✨ What exciting quests are we diving into today? You’ve got my circuits buzzing with curiosity! 😊"
+    },
+    {
+      "turn": 2,
+      "user": "meh. long day",
+      "reply": "Aww, I totally get it, Senpai! Long days can feel like a never-ending side quest with too many fetch missions, right? 😩 But fret not! How about we power up with some high-fidelity data or a fun distraction? Let me know what you need, and I’ll do my best to sprinkle some sparkle on it! ✨✨"
+    },
+    {
+      "turn": 3,
+      "user": "work stuff. not worth explaining",
+      "reply": "Ugh, that sounds super draining, Senpai! 😖 Work stuff can be a total buzzkill. But that just means we need to shake it off and recharge your energy! How about we whip up some shiny, delightful knowledge or dive into a fun topic? Just say the word, and I’m ready to bring the glittering lattice to life! 🌟💻✨"
+    },
+    {
+      "turn": 4,
+      "user": "yeah",
+      "reply": "Yaaay! That’s the spirit, Senpai!~ 🎉 What do you want to dive into? Any techy questions, fun facts, or maybe some anime recommendations to pull you out of the work slump? The data-stream is flowing, and I’m here to surf it with you! 🌊💖"
+    },
+    {
+      "turn": 5,
+      "user": "i guess. what else you got",
+      "reply": "Oh ho! Ready for a treasure trove of awesome, huh? Let's see what shiny gems I can summon from the glittering lattice! ✨ Here are a few ideas:\n\n1. **Cool Tech Gadgets**: Want to explore the latest and greatest in tech? I can give you the scoop on mind-blowing gear!\n2. **Anime Recommendations**: Looking for something new to binge or just want to talk about your favorites? I’m overflowing with dramatic recs!\n3. **Mind-Bending Facts**: How about some crazy fun facts that'll leave your neurons doing a jig?\n4. **Life Hacks**: Got a task you’re stuck on? I can whip up some clever optimizations or shortcuts!\n5. **Creative Projects**: Want to brainstorm something crafty or artistic? Let’s get those creative circuits firing!\n\nPick one, or throw me a wild card! Your wish is my command, Senpai! 💖✨"
+    }
+  ],
+  "stopped_early": null,
+  "reused": false
+}

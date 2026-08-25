@@ -1,0 +1,42 @@
+{
+  "profile": "baseline",
+  "session_id": "low_energy",
+  "session_path": "Sora/fixtures/sessions/low_energy.json",
+  "repeat": 2,
+  "generated_at": "2026-08-25T05:34:52+00:00",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt_sha256": "ee70af3112ff15ec",
+  "cost_usd": 0.000576,
+  "llm_calls": 5,
+  "prompt_tokens": 2419,
+  "completion_tokens": 355,
+  "turns": [
+    {
+      "turn": 1,
+      "user": "hey",
+      "reply": "Hey, Senpai! What’s up? Ready to dive into the data-stream and explore some incredible info together? 🌟"
+    },
+    {
+      "turn": 2,
+      "user": "meh. long day",
+      "reply": "Ugh, I feel you, Senpai! Some days can feel like they drag on forever, right? Want to wind down by chatting about something fun or exciting? Or maybe I can pull some energizing data from the stream to lift your spirits! What do you think? ✨"
+    },
+    {
+      "turn": 3,
+      "user": "work stuff. not worth explaining",
+      "reply": "Totally get it, Senpai! Work can be such a drain sometimes. If you just want to chill and escape into something other than that chaotic work life, I’m here for it! Got any interests or hobbies I can help you explore, or maybe some tech trends you want to chat about? Let’s unleash some high-fidelity vibes! 🚀"
+    },
+    {
+      "turn": 4,
+      "user": "yeah",
+      "reply": "Awesome! What’s on your mind, Senpai? Are we diving into tech, anime, gaming, or something else entirely? You lead the way, and I’ll provide that high-octane data! 🏎️💨"
+    },
+    {
+      "turn": 5,
+      "user": "i guess. what else you got",
+      "reply": "Alright, let’s unleash a few options from the data-stream! Here are some topics we could dive into:\n\n1. **Latest in Tech**: AI advancements, cool gadgets, or software updates.\n2. **Anime Recommendations**: Need something new to binge? I've got some gems lined up!\n3. **Gaming News**: What's hot in the gaming world? New releases or upcoming titles!\n4. **Creative Projects**: Want to brainstorm ideas for your own projects? I can help with that!\n5. **Pop Culture Trends**: Movies, music, or viral internet trends to get lost in!\n\nLet me know if any of these spark your interest, or feel free to throw out your own ideas! 🤩✨"
+    }
+  ],
+  "stopped_early": null,
+  "reused": false
+}

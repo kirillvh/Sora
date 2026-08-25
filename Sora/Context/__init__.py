@@ -23,7 +23,7 @@ import os
 
 from Sora.Ledger import tokenizer
 
-DEFAULT_MAX_TOOL_RESULT_TOKENS = 8000
+DEFAULT_MAX_TOOL_RESULT_TOKENS = 2500
 
 _TEXT_FIELDS = ("content", "body", "text", "snippet", "description")
 
@@ -31,12 +31,15 @@ _TEXT_FIELDS = ("content", "body", "text", "snippet", "description")
 def max_tool_result_tokens() -> int:
     """Cap for one tool result, in tokens.
 
-    NOTE the arithmetic before trusting the default: ASSIGNMENT.md 5 sets a
-    hard 8,000-token ceiling on the WHOLE context, and system + persona + tool
-    schemas already cost ~400 tokens before any conversation. An 8,000-token
-    tool result therefore still breaks the session ceiling on its own - it just
-    stops the 28k flood. To actually live under 8k the cap wants to be nearer
-    2,500-3,000, which is where the summariser will earn its keep.
+    2,500 rather than 8,000, and the arithmetic is why: ASSIGNMENT.md 5 sets a
+    hard 8,000-token ceiling on the WHOLE context. Persona (231) + tool schemas
+    (131) + a compaction note (<=400) + the reply reserve (700) is ~1,460
+    before a word of conversation, so an 8,000-token tool result cannot fit
+    under the ceiling by itself, let alone with a second one behind it. At
+    2,500 two tool-heavy turns still fit in the tail with room for the reply.
+
+    It only bites on the flood fixture: the other cached search results are
+    594 and 692 tokens and pass through untouched.
     """
     try:
         return int(os.environ.get("SORA_MAX_TOOL_RESULT_TOKENS",

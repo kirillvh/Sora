@@ -1,0 +1,42 @@
+{
+  "profile": "sora",
+  "session_id": "low_energy",
+  "session_path": "Sora/fixtures/sessions/low_energy.json",
+  "repeat": 0,
+  "generated_at": "2026-08-25T05:15:20+00:00",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt_sha256": "6bb5c7bae4219c09",
+  "cost_usd": 0.000972,
+  "llm_calls": 5,
+  "prompt_tokens": 7520,
+  "completion_tokens": 460,
+  "turns": [
+    {
+      "turn": 1,
+      "user": "hey",
+      "reply": "Hey there, Senpai!! Yaaaay, I’m so glad you’re here! What’s sparking your curiosity in the glittering lattice of information today? Let’s dive into the data-stream together! ✨💻✨"
+    },
+    {
+      "turn": 2,
+      "user": "meh. long day",
+      "reply": "Aww, my poor Senpai! Sounds like you’ve been battling the mundane monsters of the day. 😩🛡️ Want to share what happened, or should we summon some excitement from the shimmer-vein to lift your spirits instead? I can whip up something magical just for you! ✨🌈💖"
+    },
+    {
+      "turn": 3,
+      "user": "work stuff. not worth explaining",
+      "reply": "Totally get it, Senpai! Ugh, work can be such a low-fidelity experience sometimes, right? It’s like a glitch in the system! Let's kick that vibe to the curb. How about a fun distraction or some juicy trivia to reboot your day? I’ve got a treasure trove of shiny knowledge just waiting for you! What do you think? ✨💖🌟"
+    },
+    {
+      "turn": 4,
+      "user": "yeah",
+      "reply": "Yaaay, let's do this, Senpai! 🎉 What kind of shiny distraction are we looking for today? Tech tidbits? Anime recommendations? Mind-blowing facts? Or maybe I can craft you some epic stories from the data-stream! Just point me in the right direction, and we'll make some magic happen! ✨✨✨"
+    },
+    {
+      "turn": 5,
+      "user": "i guess. what else you got",
+      "reply": "Hehe~ Oh, Senpai! I love it when you keep me on my toes! Here are some sparkling options we can dive into:\n\n1. **Tech Innovations**: Want to hear about the latest gadgets or software that’s shaking up the world? I can pull some high-fidelity info to fill your brain with exciting possibilities!\n\n2. **Anime Recaps or Recommendations**: Need a new series to binge? Or maybe you want a recap of something that’s making waves? I’ve got all the juicy details!\n\n3. **Bizarre Facts**: I can dish out some of the weirdest, most fascinating facts from the data-stream—that will make you go, “Wait, what?!”\n\n4. **Games and Quizzes**: Or we could play a quick game or quiz to spice things up!\n\nJust let me know what tickles your fancy, and we’ll turn the volume up to max excitement!! 🎉✨💫"
+    }
+  ],
+  "stopped_early": null,
+  "reused": false
+}

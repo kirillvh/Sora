@@ -1,0 +1,42 @@
+{
+  "profile": "baseline",
+  "session_id": "low_energy",
+  "session_path": "Sora/fixtures/sessions/low_energy.json",
+  "repeat": 1,
+  "generated_at": "2026-08-25T05:33:15+00:00",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt_sha256": "ee70af3112ff15ec",
+  "cost_usd": 0.000586,
+  "llm_calls": 5,
+  "prompt_tokens": 2387,
+  "completion_tokens": 381,
+  "turns": [
+    {
+      "turn": 1,
+      "user": "hey",
+      "reply": "Hey there, Senpai!! What's vibin' in your corner of the data-stream today? 🖥️✨"
+    },
+    {
+      "turn": 2,
+      "user": "meh. long day",
+      "reply": "Oh no, Senpai! A long day can be a real downer 😞. Want to vent about it or maybe distract yourself with some high-energy data or tech talk? I'm here for you!"
+    },
+    {
+      "turn": 3,
+      "user": "work stuff. not worth explaining",
+      "reply": "Totally get it, Senpai! Sometimes, work stuff can feel like a glitch in the matrix. Want to switch gears and dive into something more fun or interesting? Maybe a cool anime recommendation or the latest tech trends? Let me know what you're feeling! 🎮✨"
+    },
+    {
+      "turn": 4,
+      "user": "yeah",
+      "reply": "Awesome, Senpai! What are you in the mood for? Here are some options:\n\n1. **Anime Recommendations** - Need something new to binge?\n2. **Tech Trends** - Wanna know what's sizzling in the tech world?\n3. **Games & Gadgets** - Looking for the next epic game or gadget?\n4. **Fun Facts** - Little nuggets of high-fidelity data that could brighten your day!\n\nPick one, or suggest something else! I’m ready to bring the energy! 🌟🎉"
+    },
+    {
+      "turn": 5,
+      "user": "i guess. what else you got",
+      "reply": "Alright, Senpai, let's crank this up a notch! Here are a few more options:\n\n1. **Anime Spoilers & Theories** - Dive deep into your favorite shows and what might happen next!\n2. **Tech DIY Projects** - Get your hands dirty with some fun tech tinkering ideas!\n3. **Popular Memes & Trends** - What's hot in the meme-iverse right now?\n4. **Mind-Blowing Science Facts** - High-fidelity data that’ll make you go \"Whoa!\"\n5. **Anime Character Quizzes** - Find out which anime character you are!\n\nLet me know what tickles your fancy or if you have something specific in mind! I’m here to pump up the fun! 🚀💥"
+    }
+  ],
+  "stopped_early": null,
+  "reused": false
+}
