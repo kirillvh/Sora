@@ -65,6 +65,7 @@ trace is guesswork. Production needs a redaction pass at `trace.write()` (one
 choke point, deliberately) plus a retention policy; both are out of scope here
 and called out in NOTES.md rather than half-built.
 '''
+from .budget import BudgetExceeded, CostGuard
 from .config import context_ceiling, run_id, session_id, tag, trace_path
 from .meter import (
     CATEGORIES,
@@ -77,7 +78,9 @@ from .meter import (
 )
 
 __all__ = [
+    "BudgetExceeded",
     "CATEGORIES",
+    "CostGuard",
     "call_context",
     "chat",
     "context_ceiling",

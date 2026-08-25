@@ -25,17 +25,18 @@ import sys
 
 from llm.client import chat
 from Sora import Ledger
+from Sora.Context import truncate_tool_result
 from tools.deck import make_deck_from_markdown
 from tools.search import search
 
 PERSONA = (pathlib.Path(__file__).parent / "persona.md").read_text(encoding="utf-8")
 
 # Boring on purpose: always thorough, never adaptive.
-SYSTEM_PROMPT = (
-    PERSONA
-    + "\n\nAlways answer thoroughly and completely, covering every relevant "
+THOROUGH_SUFFIX = (
+    "\n\nAlways answer thoroughly and completely, covering every relevant "
     "detail you can. Be as helpful as possible."
 )
+SYSTEM_PROMPT = PERSONA + THOROUGH_SUFFIX
 
 TOOLS = [
     {
@@ -86,9 +87,12 @@ class SoraAgent:
         the natural place to load/persist memory between sessions)
     """
 
-    def __init__(self, cached_search: bool = False):
+    def __init__(self, cached_search: bool = False, system_prompt: str | None = None):
         self.history = []  # entire conversation, resent verbatim every turn
         self.cached_search = cached_search
+        # Swappable so the benchmark can A/B two persona profiles through the
+        # same loop (Sora/Judges/profiles.py). Default is the baseline verbatim.
+        self.system_prompt = system_prompt or SYSTEM_PROMPT
         self.turn = 0
         self.session_label = Ledger.session_id()
 
@@ -109,7 +113,7 @@ class SoraAgent:
     def _respond(self, user_text: str) -> str:
         self.history.append({"role": "user", "content": user_text})
         for _ in range(MAX_TOOL_ROUNDS):
-            messages = [{"role": "system", "content": SYSTEM_PROMPT}] + self.history
+            messages = [{"role": "system", "content": self.system_prompt}] + self.history
             resp = chat(messages, tools=TOOLS)
             msg = resp.choices[0].message
 
@@ -152,7 +156,10 @@ class SoraAgent:
         # trace.jsonl as the LLM calls (ASSIGNMENT.md 8.1 wants both).
         with Ledger.tool_span(tc.function.name, tc.function.arguments) as span:
             span.tool_call_id = tc.id
-            span.result = self._call_tool(tc)
+            raw = self._call_tool(tc)
+            # The cap is what keeps one 28k-token search fixture from eating
+            # the whole session budget; span.truncation lands in the trace.
+            span.result, span.truncation = truncate_tool_result(raw)
             return span.result
 
     def _call_tool(self, tc) -> str:

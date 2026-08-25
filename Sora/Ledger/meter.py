@@ -423,6 +423,7 @@ def tool_span(name: str, args=None, category: str = "tools"):
                     "result_chars": len(result or ""),
                     "result_tokens_local": tokenizer.count_text(result or "", _model_name()),
                     "ok": span.error is None,
+                    "truncation": span.truncation,
                     "error": span.error,
                 },
                 "latency": {"total_ms": round((time.perf_counter() - started) * 1000.0, 2)},
@@ -441,7 +442,8 @@ def _as_text(value):
 
 
 class _ToolSpan:
-    __slots__ = ("name", "args", "category", "result", "error", "tool_call_id")
+    __slots__ = ("name", "args", "category", "result", "error", "tool_call_id",
+                 "truncation")
 
     def __init__(self, name, args, category):
         self.name = name
@@ -450,3 +452,4 @@ class _ToolSpan:
         self.result = None
         self.error = None
         self.tool_call_id = None
+        self.truncation = None   # set by callers that cap the result
