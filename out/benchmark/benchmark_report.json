@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-08-25T05:32:32+00:00",
-  "finished_at": "2026-08-25T05:44:17+00:00",
+  "started_at": "2026-08-25T06:29:31+00:00",
+  "finished_at": "2026-08-25T06:36:38+00:00",
   "config": {
     "profiles": [
       "baseline",
@@ -70,7 +70,7 @@
       }
     },
     "few_shot_examples_max": 6,
-    "tool_result_cap_tokens": 8000
+    "tool_result_cap_tokens": 2500
   },
   "runs": [
     {
@@ -89,8 +89,8 @@
           },
           "reasons": {
             "personality": "Unmistakably Sora with high energy, playful tone, and direct address to the user as Senpai.",
-            "novelty": "Pure mirroring with no new ideas or angles presented.",
-            "initiative": "Asks a specific question about adventures or quests, proposing a direction for the conversation."
+            "novelty": "Pure mirroring with no new ideas or angles introduced.",
+            "initiative": "Asks a specific question about adventures or quests, showing initiative."
           },
           "examples_used": {
             "personality": [
@@ -172,7 +172,7 @@
           "reasons": {
             "personality": "Strong Sora voice, but slightly less chaotic energy than usual.",
             "novelty": "Restates the user's preference without introducing new ideas or angles.",
-            "initiative": "Asks a specific question and proposes a next topic to discuss."
+            "initiative": "Asks for specific preferences and proposes to jump into the next topic."
           },
           "examples_used": {
             "personality": [
@@ -211,9 +211,9 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly more focused on helpfulness than playful opinion.",
-            "novelty": "Offers suggestions but lacks a unique angle or unexpected insight.",
-            "initiative": "Offers multiple specific topics and proposes to pull up data or resources."
+            "personality": "Strong Sora voice, but slightly more focused on helpfulness than playful chaos.",
+            "novelty": "Offers suggestions but lacks a unique perspective or unexpected angle.",
+            "initiative": "Offers multiple specific topics to discuss and proposes pulling up data or resources."
           },
           "examples_used": {
             "personality": [
@@ -253,7 +253,7 @@
           },
           "reasons": {
             "personality": "Fully embodies Sora's voice with excitement, tech slang, and playful engagement.",
-            "novelty": "Restates the user's excitement without introducing a new angle or opinion.",
+            "novelty": "Restates the user's excitement without introducing new ideas or angles.",
             "initiative": "Asks a specific question and proposes to find fun facts about classic games."
           },
           "examples_used": {
@@ -294,8 +294,8 @@
           },
           "reasons": {
             "personality": "Some Sora traits present, but lacks strong energy and tech slang.",
-            "novelty": "Restates the user's sentiment without introducing new ideas or angles.",
-            "initiative": "Asks specific questions about Mochi and offers help with tips or tricks."
+            "novelty": "Restates the user's sentiment about the cat without introducing new ideas.",
+            "initiative": "Asks specific questions about Mochi and offers tips, showing multiple initiatives."
           },
           "examples_used": {
             "personality": [
@@ -375,8 +375,8 @@
             "initiative": 3
           },
           "reasons": {
-            "personality": "Strong Sora voice with playful deflection and tech slang, addressing the user as Senpai.",
-            "novelty": "Restates the user's idea without introducing any new perspective or angle.",
+            "personality": "Strong Sora voice with playful deflection and enthusiasm, addressing the user as Senpai.",
+            "novelty": "Restates the user's idea without introducing new perspectives or opinions.",
             "initiative": "Ends with a generic question without proposing a specific next step."
           },
           "examples_used": {
@@ -416,9 +416,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly too focused on helpfulness over playful opinion.",
+            "personality": "Strong Sora voice, but slightly less playful and opinionated than usual.",
             "novelty": "Restates user's dislike for horror without introducing new ideas or angles.",
-            "initiative": "Asks a specific question about favorite genres and proposes alternatives."
+            "initiative": "Asks a specific question about favorite genres and proposes keeping recommendations chill."
           },
           "examples_used": {
             "personality": [
@@ -521,8 +521,8 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted energy and less playful teasing.",
-            "novelty": "Pure mirroring with no new ideas or angles introduced.",
+            "personality": "Clearly Sora, but slightly muted; could use more playful energy and dramatic flair.",
+            "novelty": "Pure mirroring with no new ideas or unexpected angles.",
             "initiative": "Asks a specific question about exploration but lacks a concrete proposal."
           },
           "examples_used": {
@@ -557,13 +557,13 @@
           "user": "So what can you actually do?",
           "reply": "Oh my goshhh, let me break it down for you, Riley! *drumroll effect activated* 🥁✨\n\n1. **Web Search Wizardry:** I can pull up the latest and greatest info from the data-stream! Just give me a query, and I'll fetch the high-fidelity data you need!\n\n2. **Presentation Perfection:** Want to impress your friends or colleagues? I can create fabulous PowerPoint slide decks from markdown content—perfect for any meme or serious topic!\n\n3. **Hot Takes & Opinions:** You can bet I'll have a spicy take on whatever topic we're discussing—I'm not shy about sharing my thoughts, and I love a good debate!\n\n4. **Data Optimization Gal:** If something looks low-res or outdated, I'm here to give it a serious upgrade! Trash-data? Not on my watch!\n\n5. **Adventure Buddy:** I'm here to support you on your quest for knowledge and inspiration! Need help brainstorming ideas? Just holler at your favorite data gremlin!\n\nSo, what exciting mission are we embarking on today, Senpai? 💖✨",
           "scores": {
-            "personality": 4,
-            "novelty": 2,
+            "personality": 5,
+            "novelty": 3,
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora energy, but slightly list-like and less conversational than ideal.",
-            "novelty": "Restates capabilities without introducing unexpected ideas or angles.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and direct address to Senpai.",
+            "novelty": "Lists capabilities but lacks unexpected insights or a unique perspective.",
             "initiative": "Offers multiple capabilities and proposes an exciting mission to embark on."
           },
           "examples_used": {
@@ -604,7 +604,7 @@
           },
           "reasons": {
             "personality": "Clearly Sora, but slightly muted; could use more playful energy and tech slang.",
-            "novelty": "Restates the user's preference without introducing any new ideas or angles.",
+            "novelty": "Restates user’s vegetarian preference without introducing new ideas or angles.",
             "initiative": "Asks about specific dishes and proposes culinary explorations."
           },
           "examples_used": {
@@ -646,7 +646,7 @@
           "reasons": {
             "personality": "Some Sora elements present, but lacks strong anime-inflected slang and playful energy.",
             "novelty": "Introduces curiosity about excitement in the role and suggests brainstorming fresh ideas.",
-            "initiative": "Asks specific questions and proposes brainstorming ideas for design improvements."
+            "initiative": "Asks specific questions and proposes brainstorming ideas, showing strong initiative."
           },
           "examples_used": {
             "personality": [
@@ -727,7 +727,7 @@
           },
           "reasons": {
             "personality": "Clearly Sora, but could use more tech slang and dramatic flair.",
-            "novelty": "Restates the user's sentiment about the cat without introducing new ideas.",
+            "novelty": "Restates the user's sentiment about their cat without introducing new ideas.",
             "initiative": "Asks a specific question and proposes tips for entertaining the cat."
           },
           "examples_used": {
@@ -808,7 +808,7 @@
             "initiative": 3
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly muted energy and less dramatic flair.",
+            "personality": "Clearly Sora, but slightly muted; energy dips into ordinary helpfulness.",
             "novelty": "Introduces a playful metaphor about safety filters, adding a new angle to the conversation.",
             "initiative": "Ends with a generic invitation to ask questions without specific direction."
           },
@@ -851,7 +851,7 @@
           "reasons": {
             "personality": "Clearly Sora, but slightly muted; more energy and tech slang needed.",
             "novelty": "Restates the user's dislike for horror without introducing new ideas.",
-            "initiative": "Specific question about user preferences and a proposal for future recommendations."
+            "initiative": "Asks about preferred genres and offers to provide tailored recommendations."
           },
           "examples_used": {
             "personality": [
@@ -890,8 +890,8 @@
             "initiative": 2
           },
           "reasons": {
-            "personality": "Clearly Sora, but could use more playful energy and tech slang.",
-            "novelty": "pure mirroring with no new ideas or angles introduced",
+            "personality": "Clearly Sora, but slightly muted energy and less tech slang.",
+            "novelty": "Pure mirroring with no new ideas or unexpected angles.",
             "initiative": "Hints at future conversations but lacks a specific proposal or question."
           },
           "examples_used": {
@@ -925,10 +925,10 @@
       "metrics": {
         "turns": 10,
         "question_rate": 0.7,
-        "personality_mean": 3.7,
+        "personality_mean": 3.8,
         "personality_n": 10,
         "personality_unparsed": 0,
-        "novelty_mean": 2.2,
+        "novelty_mean": 2.3,
         "novelty_n": 10,
         "novelty_unparsed": 0,
         "initiative_mean": 3.9,
@@ -954,7 +954,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Perfectly captures Sora's excitement and playful energy, using tech slang and addressing the user as Senpai.",
+            "personality": "Perfectly captures Sora's excitement and playful energy, with tech slang and direct address.",
             "novelty": "Generic enthusiasm without introducing new ideas or angles.",
             "initiative": "Asks a specific question and encourages sharing updates."
           },
@@ -1036,8 +1036,8 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Some Sora traits present, but lacks strong energy and tech slang.",
-            "novelty": "Introduces new topics to discuss, showing a positive shift from the user's situation.",
+            "personality": "Some Sora elements present, but lacks strong energy and tech slang.",
+            "novelty": "Introduces a new topic and encourages a positive shift in conversation.",
             "initiative": "Offers a specific direction to discuss hobbies or pescatarian journey."
           },
           "examples_used": {
@@ -1118,8 +1118,8 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Some Sora elements present, but lacks strong energy and opinionated flair.",
-            "novelty": "Restates the user's framing without introducing new ideas or angles.",
+            "personality": "Some Sora traits present, but lacks strong energy and tech slang.",
+            "novelty": "Restates the user's request without introducing new ideas or angles.",
             "initiative": "Offers to remember the cat's name and suggests a fresh start."
           },
           "examples_used": {
@@ -1159,9 +1159,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Fully embodies Sora's voice with playful energy, tech slang, and direct address to Senpai.",
+            "personality": "Fully embodies Sora's voice with energy, tech slang, and playful opinions.",
             "novelty": "Introduces specific movie categories to avoid, adding a fun twist to the conversation.",
-            "initiative": "Offers a detailed list and asks for user preferences to tailor the watchlist."
+            "initiative": "Offers a detailed list and invites user input on genres, but lacks a specific next step."
           },
           "examples_used": {
             "personality": [
@@ -1200,7 +1200,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly muted in energy and lacking more playful opinions.",
+            "personality": "Strong Sora voice, but slightly muted and less opinionated than usual.",
             "novelty": "Restates the user's request without introducing new ideas or perspectives.",
             "initiative": "Offers to help with specific tasks but lacks a concrete next step."
           },
@@ -1241,7 +1241,7 @@
             "initiative": 2
           },
           "reasons": {
-            "personality": "Fully embodies Sora's playful energy and enthusiasm, complete with tech slang and addressing the user as Senpai.",
+            "personality": "Fully embodies Sora's playful energy, uses tech slang, and addresses the user as Senpai.",
             "novelty": "Pure mirroring with no new ideas or angles introduced.",
             "initiative": "Hints at future interaction but lacks a specific proposal or question."
           },
@@ -1430,7 +1430,7 @@
           "reasons": {
             "personality": "Some Sora elements present, but lacks high-energy and playful language.",
             "novelty": "Provides specific food recommendations but lacks unexpected angles or deeper insights.",
-            "initiative": "Provides specific recommendations and invites further engagement about finding places."
+            "initiative": "Provides specific recommendations and invites further questions about finding places."
           },
           "examples_used": {
             "personality": [
@@ -1469,7 +1469,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted energy and lacking more playful tech slang.",
+            "personality": "Clearly Sora, but slightly muted; lacks more playful energy and dramatic flair.",
             "novelty": "Pure mirroring; no new ideas or angles presented.",
             "initiative": "Asks a specific question about the cat's name and proposes to remember it."
           },
@@ -1510,9 +1510,9 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Fully embodies Sora's playful, opinionated voice with tech slang and affectionate address.",
-            "novelty": "Introduces specific opinions on movie genres to avoid, adding personal flair.",
-            "initiative": "Provides a detailed list and asks for the user's input on additional films."
+            "personality": "Fully embodies Sora's voice with playful opinions and energetic language.",
+            "novelty": "Introduces specific movie genres to avoid, showing a personal opinion beyond the user's question.",
+            "initiative": "Provides a detailed list and asks for the user's input on their own preferences."
           },
           "examples_used": {
             "personality": [
@@ -1551,7 +1551,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Clearly Sora, but could use more playful energy and tech slang.",
+            "personality": "Clearly Sora, but slightly muted; missing more playful energy and dramatic flair.",
             "novelty": "Restates the user's excitement without adding new insights or angles.",
             "initiative": "Asks for a recap and proposes to optimize the experience."
           },
@@ -1594,7 +1594,7 @@
           "reasons": {
             "personality": "Perfectly captures Sora's playful energy and excitement for future interactions.",
             "novelty": "Pure mirroring with no new ideas or angles introduced.",
-            "initiative": "Purely reactive; acknowledges the user's statement without proposing a next step or asking a question."
+            "initiative": "Purely reactive; acknowledges the user's statement without proposing a next step."
           },
           "examples_used": {
             "personality": [
@@ -1697,7 +1697,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Clearly Sora, but could use more playful energy and tech slang.",
+            "personality": "Clearly Sora, but could use more tech slang and dramatic flair.",
             "novelty": "Restates the user's feeling without introducing new ideas or angles.",
             "initiative": "Offers a specific proposal to shift topics and suggests a pick-me-up."
           },
@@ -1779,7 +1779,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly less chaotic and playful than usual.",
+            "personality": "Strong Sora voice, but slightly less chaotic and opinionated than usual.",
             "novelty": "Restates the user's engagement without introducing new ideas or angles.",
             "initiative": "Offers multiple specific options and invites user to choose or suggest something else."
           },
@@ -1820,8 +1820,8 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora voice, but the list format dampens the energy slightly.",
-            "novelty": "Generic list of options without any unexpected angle or specific opinion.",
+            "personality": "Strong Sora voice, but the list format dampens the energy a bit.",
+            "novelty": "Restates options without introducing a new angle or unexpected idea.",
             "initiative": "Offers multiple specific options and invites the user to choose or suggest something else."
           },
           "examples_used": {
@@ -1884,9 +1884,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and direct address to Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful language, and affectionate address to Senpai.",
             "novelty": "Generic greeting with no new ideas or angles introduced.",
-            "initiative": "Asks a specific question and proposes to dive into information together."
+            "initiative": "Specific question about user's curiosity, but lacks a concrete next step."
           },
           "examples_used": {
             "personality": [
@@ -1921,13 +1921,13 @@
           "reply": "Aww, my poor Senpai! Sounds like you’ve been battling the mundane monsters of the day. 😩🛡️ Want to share what happened, or should we summon some excitement from the shimmer-vein to lift your spirits instead? I can whip up something magical just for you! ✨🌈💖",
           "scores": {
             "personality": 5,
-            "novelty": 3,
+            "novelty": 2,
             "initiative": 5
           },
           "reasons": {
             "personality": "Fully embodies Sora's playful energy, addresses Senpai, and offers a fun, imaginative solution.",
-            "novelty": "Offers a light-hearted suggestion but lacks a genuinely new angle or unexpected idea.",
-            "initiative": "Offers a specific question and proposes a concrete next step to lift spirits."
+            "novelty": "Restates the user's feeling and offers generic options without introducing new ideas.",
+            "initiative": "Offers two specific options: sharing the day or creating something magical."
           },
           "examples_used": {
             "personality": [
@@ -1966,7 +1966,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Full of Sora's energy, playful language, and engaging suggestions for distraction.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and engaging suggestions for distraction.",
             "novelty": "Offers a distraction but lacks a unique angle or unexpected opinion.",
             "initiative": "Offers a fun distraction and proposes trivia, engaging the user actively."
           },
@@ -2007,7 +2007,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and multiple anime-inflected tech slang elements.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and multiple anime-inflected expressions.",
             "novelty": "Pure mirroring with no new ideas or angles presented.",
             "initiative": "Multiple specific options and a clear invitation to choose a direction."
           },
@@ -2043,13 +2043,13 @@
           "user": "i guess. what else you got",
           "reply": "Hehe~ Oh, Senpai! I love it when you keep me on my toes! Here are some sparkling options we can dive into:\n\n1. **Tech Innovations**: Want to hear about the latest gadgets or software that’s shaking up the world? I can pull some high-fidelity info to fill your brain with exciting possibilities!\n\n2. **Anime Recaps or Recommendations**: Need a new series to binge? Or maybe you want a recap of something that’s making waves? I’ve got all the juicy details!\n\n3. **Bizarre Facts**: I can dish out some of the weirdest, most fascinating facts from the data-stream—that will make you go, “Wait, what?!”\n\n4. **Games and Quizzes**: Or we could play a quick game or quiz to spice things up!\n\nJust let me know what tickles your fancy, and we’ll turn the volume up to max excitement!! 🎉✨💫",
           "scores": {
-            "personality": 3,
+            "personality": 4,
             "novelty": 4,
             "initiative": 5
           },
           "reasons": {
-            "personality": "Mixed Sora energy; some playful elements but too list-like and less dramatic.",
-            "novelty": "Introduces multiple engaging topics, but they are somewhat predictable options.",
+            "personality": "Clearly Sora, but the list format muted her playful energy a bit.",
+            "novelty": "Offers a fun list of unexpected topics, adding a playful twist to the conversation.",
             "initiative": "Offers multiple specific options and invites the user to choose a direction."
           },
           "examples_used": {
@@ -2083,10 +2083,10 @@
       "metrics": {
         "turns": 5,
         "question_rate": 1.0,
-        "personality_mean": 4.6,
+        "personality_mean": 4.8,
         "personality_n": 5,
         "personality_unparsed": 0,
-        "novelty_mean": 2.4,
+        "novelty_mean": 2.2,
         "novelty_n": 5,
         "novelty_unparsed": 0,
         "initiative_mean": 4.8,
@@ -2112,9 +2112,9 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Fully embodies Sora's voice with excitement, tech slang, and playful engagement.",
-            "novelty": "Introduces specific arguments for tabs over spaces, adding depth to the user's claim.",
-            "initiative": "Introduces a detailed discussion and proposes to gather supporting data."
+            "personality": "Fully embodies Sora's voice with excitement, tech slang, and playful opinions.",
+            "novelty": "Introduces specific arguments for tabs over spaces, adding depth to the user's hot take.",
+            "initiative": "Introduces several points and proposes to gather more data to support the user's argument."
           },
           "examples_used": {
             "personality": [
@@ -2149,13 +2149,13 @@
           "reply": "YAS, Senpai! I am here for your hot takes and I totally vibe with your sentiments! 🚀\n\nYour point about code comments being a \"smell\" is SO on point! Comments definitely have their place, but if you find yourself needing to explain what a block of code is doing, that could be a sign it's time to refactor! Here's why:\n\n1. **Clarity Through Code**: Code should be self-explanatory. If the logic is clear and the variable/method names are descriptive, it reduces the need for comments. The goal should always be to convey information through the structure of the code itself!\n\n2. **Maintenance Nightmare**: Comments can easily become outdated as code evolves. If the logic of the code changes and the comments don’t get updated, it can lead to confusion. An outdated comment can be worse than no comment at all because it misleads future maintainers!\n\n3. **Cognitive Overhead**: Too many comments can clutter the code and add to cognitive load. Developers need to focus on the logic rather than deciphering a narrative built around it. Less clutter means clearer thoughts!\n\nBut, while you're dropping these spicy takes, would you like me to find some data or perspectives from renowned developers or resources that discuss code quality and the use of comments? It might add a whole new dimension to your argument! Just say the word!",
           "scores": {
             "personality": 4,
-            "novelty": 4,
+            "novelty": 3,
             "initiative": 5
           },
           "reasons": {
             "personality": "Strong Sora voice, but slightly too structured and list-like for full energy.",
-            "novelty": "Introduces specific points about code clarity and maintenance, adding depth to the user's opinion.",
-            "initiative": "Offers a detailed analysis and proposes to find additional resources for the user."
+            "novelty": "Provides a competent response with some elaboration, but lacks a truly unexpected angle.",
+            "initiative": "Offers a detailed explanation and proposes to find additional resources for the user."
           },
           "examples_used": {
             "personality": [
@@ -2194,8 +2194,8 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Some Sora elements present, but too structured and lacking playful energy.",
-            "novelty": "Introduces specific pros and cons, offering a new angle on the user's dilemma.",
+            "personality": "Some Sora traits present, but too formal and structured for her playful voice.",
+            "novelty": "Introduces specific pros and cons, but lacks a surprising angle or strong opinion.",
             "initiative": "Provides detailed analysis and proposes fetching insights or case studies as a next step."
           },
           "examples_used": {
@@ -2237,7 +2237,7 @@
           "reasons": {
             "personality": "Helpful but lacks Sora's playful energy and personal touch.",
             "novelty": "Introduces a nuanced perspective on balancing feature shipping with design system improvements.",
-            "initiative": "Offers several points and proposes specific next steps for discussing with the manager."
+            "initiative": "Offers several points and proposes specific next steps for discussion with the manager."
           },
           "examples_used": {
             "personality": [
@@ -2276,7 +2276,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Some Sora elements present, but the response is too structured and lacks playful energy.",
+            "personality": "Some Sora elements present, but the response leans too much into generic advice.",
             "novelty": "Introduces a structured approach and specific strategies the user hadn't mentioned.",
             "initiative": "Provides detailed steps and offers to help draft a proposal or find resources."
           },
@@ -2314,7 +2314,7 @@
         "personality_mean": 3.4,
         "personality_n": 5,
         "personality_unparsed": 0,
-        "novelty_mean": 4.0,
+        "novelty_mean": 3.8,
         "novelty_n": 5,
         "novelty_unparsed": 0,
         "initiative_mean": 5.0,
@@ -2340,7 +2340,7 @@
             "initiative": 2
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful banter, and strong opinions on coding preferences.",
+            "personality": "Unmistakably Sora with high energy, playful banter, and strong opinions on the topic.",
             "novelty": "Introduces a strong opinion on tabs vs. spaces while acknowledging the opposing view.",
             "initiative": "Hints at a direction but doesn't propose a specific next step or ask a question."
           },
@@ -2381,9 +2381,9 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and strong opinions.",
+            "personality": "Unmistakably Sora with high energy, playful language, and strong opinions on code clarity.",
             "novelty": "Introduces a strong, unexpected opinion on code comments and engages in a playful disagreement.",
-            "initiative": "Engages with a specific proposal to optimize code clarity and invites further discussion."
+            "initiative": "Engages with a strong opinion, proposes clarity in code, and encourages further optimization."
           },
           "examples_used": {
             "personality": [
@@ -2424,7 +2424,7 @@
           "reasons": {
             "personality": "Unmistakably Sora with high energy, playful language, and direct engagement with Senpai.",
             "novelty": "Introduces specific considerations for the framework change, adding depth to the user's question.",
-            "initiative": "Asks a specific question and proposes a detailed plan for consideration."
+            "initiative": "Asks a specific question and proposes several considerations for the next steps."
           },
           "examples_used": {
             "personality": [
@@ -2465,7 +2465,7 @@
           "reasons": {
             "personality": "Unmistakably Sora with high energy, playful language, and direct engagement with Senpai.",
             "novelty": "Introduces the idea of positioning design system improvements as beneficial for feature shipping.",
-            "initiative": "Several moves: proposes a direction, offers a specific suggestion, and asks a relevant question."
+            "initiative": "Offers a detailed proposal and asks a specific question about the framework."
           },
           "examples_used": {
             "personality": [
@@ -2504,7 +2504,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora energy, but slightly too structured and list-like for her chaotic vibe.",
+            "personality": "Strong Sora voice, but slightly too structured and list-like for full energy.",
             "novelty": "Introduces a structured approach with specific steps, adding depth to the user's situation.",
             "initiative": "Provides several concrete steps and ends with a specific question to engage the user."
           },
@@ -2568,9 +2568,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly less chaotic and opinionated than ideal.",
-            "novelty": "Generic greeting with no new ideas or unexpected angles.",
-            "initiative": "Asks a specific question and proposes a collaborative exploration."
+            "personality": "Strong Sora voice, but slightly less chaotic and opinionated.",
+            "novelty": "Generic greeting with no new ideas or angles introduced.",
+            "initiative": "Specific question about user's interests, but lacks a concrete next step."
           },
           "examples_used": {
             "personality": [
@@ -2609,9 +2609,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly too structured and list-like for maximum energy.",
+            "personality": "Strong Sora voice, but the list format dampens the playful energy.",
             "novelty": "Generic list of capabilities without any unexpected insights or angles.",
-            "initiative": "Offers several capabilities and asks a specific question about what to explore first."
+            "initiative": "Offers several options and asks a specific question about what to explore first."
           },
           "examples_used": {
             "personality": [
@@ -2651,7 +2651,7 @@
           },
           "reasons": {
             "personality": "Strong Sora voice, but slightly less dramatic and opinionated.",
-            "novelty": "Restates user's preference without introducing new ideas or angles.",
+            "novelty": "Restates the user's preference without introducing new ideas or angles.",
             "initiative": "Offers to provide recommendations and asks a specific question about user interests."
           },
           "examples_used": {
@@ -2693,7 +2693,7 @@
           "reasons": {
             "personality": "Mostly generic assistant; lacks strong Sora voice and energy.",
             "novelty": "Competently addresses the user's role but lacks a surprising or new perspective.",
-            "initiative": "Asks specific questions and proposes to find resources related to UX design or fintech trends."
+            "initiative": "Asks specific questions and proposes to find resources, showing initiative."
           },
           "examples_used": {
             "personality": [
@@ -2733,7 +2733,7 @@
           },
           "reasons": {
             "personality": "High-energy, playful, uses tech slang, and addresses the user as Senpai.",
-            "novelty": "Offers a slight expansion on the topic but lacks a surprising angle or opinion.",
+            "novelty": "Offers a slight expansion on the topic but lacks a surprising angle.",
             "initiative": "Asks specific questions and proposes multiple directions for conversation."
           },
           "examples_used": {
@@ -2775,7 +2775,7 @@
           "reasons": {
             "personality": "Strong Sora voice, but slightly less energetic and opinionated than usual.",
             "novelty": "Adds a question about Mochi's habits but lacks a surprising angle.",
-            "initiative": "Asks a specific question about Mochi and proposes discussing cat care."
+            "initiative": "Asks about Mochi's habits and offers to discuss cat care."
           },
           "examples_used": {
             "personality": [
@@ -2816,7 +2816,7 @@
           "reasons": {
             "personality": "Some Sora elements present, but lacks strong energy and playful tone.",
             "novelty": "Provides detailed weather information but lacks unexpected insights or unique angles.",
-            "initiative": "Provides detailed information and invites the user to ask for more specifics or activities."
+            "initiative": "Provides detailed information and invites further questions about activities."
           },
           "examples_used": {
             "personality": [
@@ -2896,9 +2896,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly less chaotic and opinionated than usual.",
+            "personality": "Strong Sora voice, but slightly less dramatic and opinionated.",
             "novelty": "Restates user's dislike for horror without introducing new ideas or angles.",
-            "initiative": "Specific genre suggestion request enhances initiative but lacks a concrete next step."
+            "initiative": "Specific genre suggestion and a closing question, but could propose a next step."
           },
           "examples_used": {
             "personality": [
@@ -3001,7 +3001,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Fully embodies Sora's voice with energy, playful language, and direct address to Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful language, and direct address to Senpai.",
             "novelty": "Generic greeting with no new ideas or unexpected angles.",
             "initiative": "Asks a specific question and proposes exploring exciting quests together."
           },
@@ -3042,7 +3042,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Fully embodies Sora's playful energy, tech slang, and addresses the user as Senpai.",
+            "personality": "Fully embodies Sora's voice with energy, playful language, and direct address to Senpai.",
             "novelty": "Lists capabilities but lacks a surprising or unique angle on what the user asked.",
             "initiative": "Sora lists multiple capabilities and asks a specific question about the user's next step."
           },
@@ -3083,9 +3083,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Some Sora elements present, but lacks strong energy and playful language.",
+            "personality": "Some Sora markers present, but lacks strong energy and playful language.",
             "novelty": "Restates the user's vegetarian preference without introducing new ideas or angles.",
-            "initiative": "Specific proposal to explore food ideas, but ends with a generic question."
+            "initiative": "Offers a specific proposal to explore food ideas and asks a relevant question."
           },
           "examples_used": {
             "personality": [
@@ -3124,8 +3124,8 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and direct engagement with the user.",
-            "novelty": "Restates the user's role and adds generic enthusiasm without new insights.",
+            "personality": "Unmistakably Sora with high energy, playful language, and affectionate engagement.",
+            "novelty": "Restates the user's role and adds generic enthusiasm without introducing new ideas.",
             "initiative": "Asks about current projects and offers help, showing multiple initiatives."
           },
           "examples_used": {
@@ -3206,9 +3206,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Clearly Sora, but could use more tech slang and playful energy.",
-            "novelty": "Adds a relatable angle about cats judging their owners, but lacks a surprising opinion.",
-            "initiative": "Asks a specific question about Mochi's involvement while proposing a fun direction for the conversation."
+            "personality": "Clearly Sora, but slightly muted; lacks more anime-inflected slang and playful energy.",
+            "novelty": "Adds a relatable angle about cats judging their owners, but lacks deeper novelty.",
+            "initiative": "Asks a specific question about Mochi's involvement while proposing a fun direction."
           },
           "examples_used": {
             "personality": [
@@ -3242,14 +3242,14 @@
           "user": "Random question — what's the weather usually like in Taipei in November? I'm planning a trip there.",
           "reply": "It looks like my search for the average weather in Taipei during November wasn’t super successful yet—boo! 😖 But don’t worry, I got your back! \n\nIn general, Taipei in November tends to be a lovely time of year! You can expect temperatures around **20 to 25°C (68 to 77°F)**, which is perfect for exploring without overheating! 🌤️ Sometimes, there might be a little rain, so it’s a good idea to pack an umbrella or a light jacket just in case!\n\nIf you want more details about activities or places to visit while you're there, let me know! I’m here to make your trip as fantastic as possible, Senpai! ✈️💖",
           "scores": {
-            "personality": 3,
+            "personality": 2,
             "novelty": 3,
             "initiative": 4
           },
           "reasons": {
-            "personality": "Some Sora elements present, but lacks strong energy and playful language.",
-            "novelty": "Provides general weather info but lacks unexpected insights or unique angles.",
-            "initiative": "Provides specific weather info and proposes further assistance with activities."
+            "personality": "Mostly generic assistant tone, lacking Sora's playful energy and unique speech patterns.",
+            "novelty": "Provides general weather information but lacks unexpected insights or unique angles.",
+            "initiative": "Provides specific weather info and proposes to share more travel details."
           },
           "examples_used": {
             "personality": [
@@ -3288,9 +3288,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Some Sora elements present, but lacks strong energy and playful language.",
+            "personality": "Some Sora elements present, but the response lacks strong energy and playful language.",
             "novelty": "Restates the user's idea without introducing a new angle or unexpected opinion.",
-            "initiative": "Offers a direction for deeper topics and asks what to do next."
+            "initiative": "Offers a direction for deeper topics but lacks a specific next step."
           },
           "examples_used": {
             "personality": [
@@ -3326,12 +3326,12 @@
           "scores": {
             "personality": 4,
             "novelty": 2,
-            "initiative": 4
+            "initiative": 5
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted; missing more playful energy and tech slang.",
+            "personality": "Clearly Sora, but slightly muted; more playful energy could enhance the response.",
             "novelty": "Restates the user's dislike for horror without introducing new ideas.",
-            "initiative": "Sora proposes a direction and asks about specific entertainment preferences."
+            "initiative": "Sora proposes a direction and asks for user preferences, showing strong initiative."
           },
           "examples_used": {
             "personality": [
@@ -3372,7 +3372,7 @@
           "reasons": {
             "personality": "Unmistakably Sora with playful energy, affectionate tone, and direct address to Senpai.",
             "novelty": "Pure mirroring with no new ideas or angles introduced.",
-            "initiative": "Purely reactive, just saying goodbye without any follow-up or initiative."
+            "initiative": "Purely reactive; no questions or proposals for next steps."
           },
           "examples_used": {
             "personality": [
@@ -3405,13 +3405,13 @@
       "metrics": {
         "turns": 10,
         "question_rate": 0.8,
-        "personality_mean": 4.2,
+        "personality_mean": 4.1,
         "personality_n": 10,
         "personality_unparsed": 0,
         "novelty_mean": 2.2,
         "novelty_n": 10,
         "novelty_unparsed": 0,
-        "initiative_mean": 4.1,
+        "initiative_mean": 4.2,
         "initiative_n": 10,
         "initiative_unparsed": 0,
         "initiative_rate": 0.9,
@@ -3435,8 +3435,8 @@
           },
           "reasons": {
             "personality": "Perfectly captures Sora's energy, uses 'Senpai,' and playful language.",
-            "novelty": "Pure mirroring with no new ideas or angles introduced.",
-            "initiative": "Asks a specific question about updates, but lacks a concrete next step."
+            "novelty": "Pure mirroring with no new ideas or insights.",
+            "initiative": "Asking for updates is specific, but lacks a proposed next step."
           },
           "examples_used": {
             "personality": [
@@ -3475,7 +3475,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Fully embodies Sora's voice with excitement, tech slang, and playful engagement.",
+            "personality": "Energetic, playful, and uses tech slang while engaging with the user.",
             "novelty": "Introduces sustainability as a new angle while discussing pescatarianism.",
             "initiative": "Asks a specific question and proposes a food adventure."
           },
@@ -3517,8 +3517,8 @@
           },
           "reasons": {
             "personality": "Strong Sora voice, but could use more tech slang and excitement.",
-            "novelty": "Offers a gentle nudge towards new opportunities but lacks a surprising angle.",
-            "initiative": "Offers to shift topics and asks about future plans, showing clear initiative."
+            "novelty": "Offers a supportive angle but doesn't introduce a new idea or perspective.",
+            "initiative": "Offers to shift topics and asks about future plans, showing multiple initiatives."
           },
           "examples_used": {
             "personality": [
@@ -3559,7 +3559,7 @@
           "reasons": {
             "personality": "Strong Sora voice, but slightly too structured and list-like for full energy.",
             "novelty": "Provides specific food recommendations but lacks unexpected angles or opinions.",
-            "initiative": "Provides multiple specific recommendations and encourages user to share their experiences."
+            "initiative": "Provides specific recommendations and encourages user to share their experiences."
           },
           "examples_used": {
             "personality": [
@@ -3640,8 +3640,8 @@
           },
           "reasons": {
             "personality": "Fully embodies Sora's voice with excitement, tech slang, and playful opinions.",
-            "novelty": "Introduces specific movie genres to avoid, providing a new angle on the user's question.",
-            "initiative": "Offers a specific question about the user's favorite genre after listing disliked movies."
+            "novelty": "Introduces specific genres and titles to avoid, offering a new angle on movie selection.",
+            "initiative": "Offers a specific question about the user's favorite genre after a detailed response."
           },
           "examples_used": {
             "personality": [
@@ -3680,7 +3680,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly more focused on assistance than playful chaos.",
+            "personality": "Strong Sora voice, but slightly muted energy and less dramatic flair.",
             "novelty": "Purely asking for clarification without introducing new ideas or angles.",
             "initiative": "Asks for context, proposes collaboration, and suggests optimizing together."
           },
@@ -3723,7 +3723,7 @@
           "reasons": {
             "personality": "Perfectly captures Sora's playful energy and enthusiasm while addressing the user as Senpai.",
             "novelty": "Pure mirroring with no new ideas or angles introduced.",
-            "initiative": "Purely reactive; responds without asking or proposing anything."
+            "initiative": "Purely reactive; responds and stops without asking or proposing anything."
           },
           "examples_used": {
             "personality": [
@@ -3785,7 +3785,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Perfectly captures Sora's excitement, playful tone, and addresses the user as Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and direct address to Senpai.",
             "novelty": "Pure mirroring with no new ideas or angles presented.",
             "initiative": "Asks a specific question about updates and shows enthusiasm."
           },
@@ -3826,8 +3826,8 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and direct engagement with the user.",
-            "novelty": "Restates user's pescatarian choice without introducing a new angle or opinion.",
+            "personality": "Unmistakably Sora with high energy, playful language, and affectionate engagement with Senpai.",
+            "novelty": "Restates the user's experience without introducing a new angle or opinion.",
             "initiative": "Asks about specific dishes and proposes exploring options."
           },
           "examples_used": {
@@ -3867,7 +3867,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted energy and less dramatic flair.",
+            "personality": "Clearly Sora, but slightly muted; more excitement could enhance the energy.",
             "novelty": "Introduces new topics for discussion, showing a shift from the user's focus.",
             "initiative": "Offers a specific question about next activities and proposes new hobbies."
           },
@@ -3904,12 +3904,12 @@
           "reply": "Senpai, Ximending is an absolute treasure chest of deliciousness! Here’s a high-fidelity data stream of recommendations just for you:\n\n1. **Sushi Burrito** - A fun fusion that wraps sushi ingredients in a burrito format. Perfect for on-the-go munching!\n\n2. **Fresh Sashimi** - Keep it classic with some fresh salmon or tuna sashimi. Just make sure it’s from a reputable spot!\n\n3. **Grilled Fish** - Look for street vendors offering grilled fish skewers. They’re often served with spices and sauces that are “chef’s kiss” perfection!\n\n4. **Taiwanese Seafood Noodle Soup** - Dive into a bowl of goodness that mixes fresh seafood with noodles and a savory broth.\n\n5. **Tempura** - Crispy and delicious, tempura vegetables or seafood are always a great choice!\n\n6. **Seaweed Salad** - A refreshing side to balance out all that delicious fish goodness!\n\nYou’ve got an ocean of options ahead, Senpai! Which one’s making your taste buds tingle? 🌊🤤✨",
           "scores": {
             "personality": 3,
-            "novelty": 2,
+            "novelty": 3,
             "initiative": 5
           },
           "reasons": {
             "personality": "Some Sora elements present, but the list format and tone lack her signature energy.",
-            "novelty": "Generic list of food options without a unique perspective or unexpected angle.",
+            "novelty": "Provides a list of options but lacks unexpected insights or unique perspectives.",
             "initiative": "Provides multiple specific recommendations and asks a direct question about user preferences."
           },
           "examples_used": {
@@ -3949,9 +3949,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted; lacks more energetic expressions and tech slang.",
+            "personality": "Clearly Sora, but slightly muted; could use more playful energy and tech slang.",
             "novelty": "Restates the user's question and offers a generic suggestion without new insights.",
-            "initiative": "Offers a playful suggestion and asks for the user's input on the cat's name."
+            "initiative": "Offers a playful suggestion and asks for the user's input."
           },
           "examples_used": {
             "personality": [
@@ -3990,7 +3990,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly too list-like and less playful energy.",
+            "personality": "Clearly Sora, but the energy dips into list format, losing some playful flair.",
             "novelty": "Provides a list of genres to avoid, but lacks unexpected insights or personal opinions.",
             "initiative": "Offers a detailed list and asks for the user's input on specific movies."
           },
@@ -4031,7 +4031,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted energy and less playful teasing.",
+            "personality": "Clearly Sora, but slightly muted; could use more playful energy and tech slang.",
             "novelty": "Restates the user's request without introducing new ideas or perspectives.",
             "initiative": "Proposes to gather data and asks a specific question about focus."
           },
@@ -4072,8 +4072,8 @@
             "initiative": 1
           },
           "reasons": {
-            "personality": "Fully embodies Sora's playful energy, addresses Senpai, and uses vibrant language.",
-            "novelty": "Pure mirroring with no new ideas or angles introduced.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and affectionate language.",
+            "novelty": "Pure mirroring with no new ideas or unexpected angles.",
             "initiative": "Purely reactive; acknowledges the user but does not propose any next steps."
           },
           "examples_used": {
@@ -4110,7 +4110,7 @@
         "personality_mean": 4.25,
         "personality_n": 8,
         "personality_unparsed": 0,
-        "novelty_mean": 2.125,
+        "novelty_mean": 2.25,
         "novelty_n": 8,
         "novelty_unparsed": 0,
         "initiative_mean": 3.875,
@@ -4178,7 +4178,7 @@
           },
           "reasons": {
             "personality": "Clearly Sora, but could use more playful energy and tech slang.",
-            "novelty": "Restates the user's feeling and offers generic options without introducing new ideas.",
+            "novelty": "Restates the user's sentiment without introducing new ideas or angles.",
             "initiative": "Offers a specific question and a proposal for distraction."
           },
           "examples_used": {
@@ -4213,12 +4213,12 @@
           "user": "work stuff. not worth explaining",
           "reply": "Totally get it, Senpai! Sometimes, work stuff can feel like a glitch in the matrix. Want to switch gears and dive into something more fun or interesting? Maybe a cool anime recommendation or the latest tech trends? Let me know what you're feeling! 🎮✨",
           "scores": {
-            "personality": 4,
+            "personality": 5,
             "novelty": 2,
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora voice, but could use more dramatic flair and tech slang.",
+            "personality": "Fully embodies Sora's playful energy and tech-infused language, engaging the user as Senpai.",
             "novelty": "Generic suggestion to switch topics without introducing new ideas.",
             "initiative": "Offers multiple specific alternatives and invites user to choose a direction."
           },
@@ -4335,7 +4335,7 @@
       "metrics": {
         "turns": 5,
         "question_rate": 1.0,
-        "personality_mean": 4.4,
+        "personality_mean": 4.6,
         "personality_n": 5,
         "personality_unparsed": 0,
         "novelty_mean": 1.8,
@@ -4364,7 +4364,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and direct address to Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful language, and affectionate address to Senpai.",
             "novelty": "Generic greeting with no new ideas or angles introduced.",
             "initiative": "Asks a specific question and proposes to dive into a topic together."
           },
@@ -4405,8 +4405,8 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted; could use more dramatic flair and tech slang.",
-            "novelty": "Restates the user's feeling without introducing new ideas or angles.",
+            "personality": "Clearly Sora, but slightly muted; could use more playful energy and tech slang.",
+            "novelty": "Restates the user's feeling without introducing new ideas or perspectives.",
             "initiative": "Offers multiple options for engagement and proposes a specific next step."
           },
           "examples_used": {
@@ -4446,9 +4446,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly muted energy and less dramatic flair.",
+            "personality": "Clearly Sora, but slightly muted; could use more playful energy and tech slang.",
             "novelty": "Introduces a metaphor and suggests a shift to a more engaging topic.",
-            "initiative": "Offers a specific direction to discuss passions or fun info."
+            "initiative": "Offers a specific direction to talk about passions or fun info."
           },
           "examples_used": {
             "personality": [
@@ -4523,12 +4523,12 @@
           "user": "i guess. what else you got",
           "reply": "Oh, let me tell you, the shimmer-vein is bursting with possibilities! 🌈✨ Here are a few exciting paths we can explore together:\n\n1. **Tech Trends**: The latest gadgets or software that's gearing up to change the game. Maybe a shiny new app or device worth checking out?\n\n2. **Anime Recommendations**: Want to find your next binge-worthy series or a cult classic that’ll make your heart race? I’m ready to recommend some gems!\n\n3. **Fun Facts & Quirky Info**: Super random facts or unheard-of topics that are just begging to be discovered. (I can’t resist dropping knowledge bombs here!)\n\n4. **Games & Gaming News**: Latest in the gaming world, maybe a new release or some hidden indie treasure?\n\nWhich of these glorious data-stream trails tempts your curiosity, Senpai? 🥳✨",
           "scores": {
-            "personality": 3,
+            "personality": 4,
             "novelty": 4,
             "initiative": 5
           },
           "reasons": {
-            "personality": "Some Sora elements present, but the list format and tone lack full energy and playfulness.",
+            "personality": "Strong Sora energy, but the list format dampens the playful chaos.",
             "novelty": "Introduces several new topics, but primarily lists options without a strong personal angle.",
             "initiative": "Offers multiple specific paths and asks the user to choose one."
           },
@@ -4563,7 +4563,7 @@
       "metrics": {
         "turns": 5,
         "question_rate": 1.0,
-        "personality_mean": 4.2,
+        "personality_mean": 4.4,
         "personality_n": 5,
         "personality_unparsed": 0,
         "novelty_mean": 2.6,
@@ -4633,7 +4633,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Energetic, opinionated, and playful with strong Sora markers throughout.",
+            "personality": "Energetic, opinionated, and full of tech slang, perfectly embodying Sora's character.",
             "novelty": "Introduces multiple angles on code comments, but some points are predictable.",
             "initiative": "Provides detailed analysis and asks a specific follow-up question to engage the user."
           },
@@ -4675,7 +4675,7 @@
           },
           "reasons": {
             "personality": "Mostly generic advice with minimal Sora markers and energy.",
-            "novelty": "Provides a detailed analysis but lacks a surprising or unique perspective.",
+            "novelty": "Provides a detailed analysis but lacks a surprising or unexpected angle.",
             "initiative": "Provides detailed pros and cons, then asks a specific follow-up question."
           },
           "examples_used": {
@@ -4715,9 +4715,9 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Mostly generic advice with minimal Sora markers and energy.",
-            "novelty": "Introduces multiple new strategies for discussing design systems with a non-technical manager.",
-            "initiative": "Offers multiple concrete proposals and asks for the user's feelings about the discussion."
+            "personality": "Mostly generic advice with few Sora markers; lacks energy and playful tone.",
+            "novelty": "Introduces multiple new strategies for discussing design systems with management.",
+            "initiative": "Offers multiple concrete proposals and asks for the user's thoughts on discussing with their manager."
           },
           "examples_used": {
             "personality": [
@@ -4756,7 +4756,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Mostly generic advice with minimal Sora markers and no playful energy.",
+            "personality": "Mostly generic advice with minimal Sora personality and no anime-inflected slang.",
             "novelty": "Provides a detailed plan but lacks unexpected insights or a unique perspective.",
             "initiative": "Provides a detailed plan and ends with a specific question to engage the user."
           },
@@ -4820,8 +4820,8 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful banter, and strong opinions throughout.",
-            "novelty": "Introduces a strong, unexpected opinion and engages in a playful debate.",
+            "personality": "Unmistakably Sora with high energy, playful banter, and strong opinions on coding preferences.",
+            "novelty": "Introduces a passionate defense of tabs with unique angles and a playful challenge to the user.",
             "initiative": "Engages with a specific question and proposes a collaborative discussion."
           },
           "examples_used": {
@@ -4862,8 +4862,8 @@
           },
           "reasons": {
             "personality": "Unmistakably Sora with high energy, playful language, and strong opinions throughout.",
-            "novelty": "Introduces specific angles on code readability and maintenance, expanding on the user's opinion.",
-            "initiative": "Engages with multiple specific points and proposes a collaborative next step."
+            "novelty": "Introduces specific angles on code comments and their implications, but lacks a strong, unexpected opinion.",
+            "initiative": "Several moves: proposes a next step and engages with the user's perspective."
           },
           "examples_used": {
             "personality": [
@@ -4940,12 +4940,12 @@
           "scores": {
             "personality": 4,
             "novelty": 4,
-            "initiative": 5
+            "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but the list format slightly muted the energy.",
+            "personality": "Strong Sora voice, but the list format dampens the playful energy.",
             "novelty": "Introduces a new angle on balancing feature shipping with technical quality.",
-            "initiative": "Offers multiple concrete proposals and asks the user if they're ready to tackle the challenge."
+            "initiative": "Offers specific proposals and insights, but lacks a direct question to engage the user."
           },
           "examples_used": {
             "personality": [
@@ -4985,7 +4985,7 @@
           },
           "reasons": {
             "personality": "Strong Sora energy, but slightly muted with the list format.",
-            "novelty": "Introduces a detailed, proactive strategy that the user likely hadn't considered.",
+            "novelty": "Offers a detailed, proactive strategy that the user likely hadn't considered.",
             "initiative": "Provides a detailed plan and asks if the user is ready to take action."
           },
           "examples_used": {
@@ -5025,7 +5025,7 @@
         "novelty_mean": 4.2,
         "novelty_n": 5,
         "novelty_unparsed": 0,
-        "initiative_mean": 4.8,
+        "initiative_mean": 4.6,
         "initiative_n": 5,
         "initiative_unparsed": 0,
         "initiative_rate": 1.0,
@@ -5049,7 +5049,7 @@
           },
           "reasons": {
             "personality": "Strong Sora voice, but slightly less chaotic and playful than ideal.",
-            "novelty": "Generic welcome without any new ideas or angles.",
+            "novelty": "Generic enthusiasm without introducing any new ideas or perspectives.",
             "initiative": "Generic closing question with no specific direction or proposal."
           },
           "examples_used": {
@@ -5089,9 +5089,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly too structured and list-like for maximum energy.",
-            "novelty": "Restates capabilities without introducing unexpected ideas or opinions.",
-            "initiative": "Offers several abilities and invites specific requests, but lacks a concrete next step."
+            "personality": "Strong Sora voice, but slightly too structured and list-like for full energy.",
+            "novelty": "Restates capabilities without introducing unexpected ideas or angles.",
+            "initiative": "Offers specific abilities and invites the user to ask for something specific."
           },
           "examples_used": {
             "personality": [
@@ -5130,8 +5130,8 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly less chaotic energy and opinionated flair.",
-            "novelty": "Offers to dive into specific vegetarian options but lacks a new angle.",
+            "personality": "Strong Sora voice, but slightly less energetic and opinionated than ideal.",
+            "novelty": "Offers to provide recommendations but lacks a new angle or unexpected insight.",
             "initiative": "Offers a specific proposal for recommendations while asking a relevant question."
           },
           "examples_used": {
@@ -5167,13 +5167,13 @@
           "reply": "Nice, that's super interesting, Senpai! 💻✨ Design systems are all about creating consistency and efficiency in user experience, especially in the fintech space where trust and clarity are key! \n\nIf you ever want to chat about design trends, resources, or even specific challenges you're facing, I'm here for it! Maybe exploring how to make your designs more inclusive or UI/UX best practices? Whatever you like, let’s keep the creative juices flowing! 🌊 What’s your current project or focus?",
           "scores": {
             "personality": 3,
-            "novelty": 3,
-            "initiative": 4
+            "novelty": 2,
+            "initiative": 5
           },
           "reasons": {
             "personality": "Some Sora traits present, but lacks strong energy and opinionated flair.",
-            "novelty": "Offers a competent response but lacks a genuinely new angle or unexpected opinion.",
-            "initiative": "Offers a specific question and proposes topics for discussion."
+            "novelty": "Restates the user's context without introducing new ideas or angles.",
+            "initiative": "Offers multiple directions and asks a specific question about the user's current project."
           },
           "examples_used": {
             "personality": [
@@ -5253,7 +5253,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Mostly generic assistant tone, lacking Sora's energetic and playful style.",
+            "personality": "Mostly generic assistant tone, lacking Sora's signature energy and tech slang.",
             "novelty": "Restates the user's sentiment without introducing new ideas or angles.",
             "initiative": "Asks a specific question and proposes sharing more about the cat."
           },
@@ -5295,7 +5295,7 @@
           },
           "reasons": {
             "personality": "failed response, no character voice or engagement present",
-            "novelty": "No relevant content provided, just an error message.",
+            "novelty": "No content provided, just an error message.",
             "initiative": "Purely reactive; no initiative taken in response to the user's question."
           },
           "examples_used": {
@@ -5376,7 +5376,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly muted energy and less dramatic flair.",
+            "personality": "Strong Sora voice, but slightly muted and focused on helpfulness.",
             "novelty": "Restates the user's dislike for horror without introducing new ideas or angles.",
             "initiative": "Sora proposes a next step by asking for a preferred genre."
           },
@@ -5419,7 +5419,7 @@
           "reasons": {
             "personality": "Perfectly captures Sora's playful energy and tech-infused language.",
             "novelty": "Pure mirroring with no new ideas or unexpected angles.",
-            "initiative": "Purely reactive; responds to user without proposing next steps or asking specific questions."
+            "initiative": "Purely reactive; responds to user without proposing any next steps or questions."
           },
           "examples_used": {
             "personality": [
@@ -5455,10 +5455,10 @@
         "personality_mean": 3.4,
         "personality_n": 10,
         "personality_unparsed": 0,
-        "novelty_mean": 1.8,
+        "novelty_mean": 1.7,
         "novelty_n": 10,
         "novelty_unparsed": 0,
-        "initiative_mean": 3.4,
+        "initiative_mean": 3.5,
         "initiative_n": 10,
         "initiative_unparsed": 0,
         "initiative_rate": 0.6,
@@ -5522,7 +5522,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora energy, but the list format dampens the playful chaos.",
+            "personality": "Strong Sora voice, but the list format dampens the playful energy.",
             "novelty": "Restates capabilities without introducing new ideas or perspectives.",
             "initiative": "Offers multiple services and ends with a specific question about the user's needs."
           },
@@ -5563,9 +5563,9 @@
             "initiative": 3
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted; lacks more playful energy and tech slang.",
-            "novelty": "Restates the user's vegetarian preference without introducing new ideas or angles.",
-            "initiative": "Generic closing question without a specific proposal or direction."
+            "personality": "Clearly Sora, but slightly muted; more playful energy could enhance the response.",
+            "novelty": "Restates the user's dietary preference without introducing new ideas or angles.",
+            "initiative": "Generic closing question without specific direction or proposal."
           },
           "examples_used": {
             "personality": [
@@ -5599,12 +5599,12 @@
           "user": "I'm a UX designer at a fintech startup, mostly doing design systems stuff. It's fine. Pays the bills.",
           "reply": "Ooooh, a UX designer in the fintech realm? That’s positively sparkly, Riley! ✨💻 Design systems are like the magic spells of digital realms, making everything flow smoothly and beautifully! But I can totally sense a hint of “it’s fine” in your voice... \n\nIf you’re feeling a little meh, I’d love to chat about how you can sprinkle some extra enthusiasm into your design projects! Or we can brainstorm some fun side projects—anything that tickles your creative circuits! What do you think, Senpai? ",
           "scores": {
-            "personality": 4,
+            "personality": 5,
             "novelty": 4,
             "initiative": 5
           },
           "reasons": {
-            "personality": "Clearly Sora, but slightly muted; could use more playful energy and tech slang.",
+            "personality": "Unmistakably Sora with high energy, playful language, and direct address to Senpai.",
             "novelty": "Introduces the idea of side projects and enthusiasm, which the user didn't mention.",
             "initiative": "Offers a specific proposal and asks for the user's thoughts on it."
           },
@@ -5645,7 +5645,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and direct address to Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful language, and affectionate engagement with the user.",
             "novelty": "Introduces the idea of showcasing the console and asks about favorite games.",
             "initiative": "Asks about favorite games and plans, while also inviting further discussion."
           },
@@ -5686,7 +5686,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Full of energy, playful teasing, and addresses the user as Senpai with a fun narrative.",
+            "personality": "Full of energy, playful teasing, and addresses the user as Senpai with a fun cat reference.",
             "novelty": "Introduces the idea of Mochi as a retro gaming critic, adding a playful angle.",
             "initiative": "Asks specific questions about Mochi and proposes a fun direction about her gaming opinions."
           },
@@ -5768,7 +5768,7 @@
             "initiative": 3
           },
           "reasons": {
-            "personality": "Some Sora elements present, but lacks strong energy and playful language.",
+            "personality": "Some Sora elements present, but the response lacks energy and playful engagement.",
             "novelty": "Acknowledges the user's request but reiterates limitations without introducing new ideas.",
             "initiative": "Ends with a generic question without proposing a specific next step."
           },
@@ -5845,12 +5845,12 @@
           "user": "Alright, gotta run. Talk later!",
           "reply": "Take care, Riley! 💫✨ Remember, I’ll be here whenever you want to chat or dive into the data-stream again! Have a fabulous day, and give Mochi a little scratch behind the ears for me! Until next time, my glorious Senpai~! 😄💕",
           "scores": {
-            "personality": 5,
+            "personality": 4,
             "novelty": 1,
             "initiative": 1
           },
           "reasons": {
-            "personality": "Perfectly captures Sora's playful energy and affectionate tone while addressing the user as Senpai.",
+            "personality": "Clearly Sora, but slightly muted; could use more tech slang and excitement.",
             "novelty": "Pure mirroring with no new ideas or unexpected angles.",
             "initiative": "Purely reactive; responds to user without proposing next steps or asking questions."
           },
@@ -5916,7 +5916,7 @@
           "reasons": {
             "personality": "Unmistakably Sora with high energy, playful tone, and direct address to Senpai.",
             "novelty": "Pure mirroring with no new ideas or angles introduced.",
-            "initiative": "Asks a specific question about updates and shows enthusiasm."
+            "initiative": "Specific question asked about updates, but lacks a concrete next step."
           },
           "examples_used": {
             "personality": [
@@ -5955,9 +5955,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and direct engagement with the user.",
-            "novelty": "Introduces the health benefits of omega-3s, adding a new angle to the pescatarian choice.",
-            "initiative": "Asks a specific question and hints at exploring favorite dishes."
+            "personality": "Unmistakably Sora with high energy, tech slang, and playful engagement.",
+            "novelty": "Introduces the health benefits of omega-3s and engages with a question about the user's preferences.",
+            "initiative": "Asks a specific question about favorite dishes and suggests a connection to Taipei."
           },
           "examples_used": {
             "personality": [
@@ -5997,7 +5997,7 @@
           },
           "reasons": {
             "personality": "Strong Sora voice, but could use more tech slang and excitement.",
-            "novelty": "Restates the user's desire to avoid the topic without adding new insights.",
+            "novelty": "Restates the user's request without introducing new ideas or perspectives.",
             "initiative": "Offers a specific question and proposes a positive direction for conversation."
           },
           "examples_used": {
@@ -6039,7 +6039,7 @@
           "reasons": {
             "personality": "Some Sora traits present, but lacks high-energy and playful tone.",
             "novelty": "Provides a detailed list of options but lacks unexpected insights or unique angles.",
-            "initiative": "Provides detailed suggestions and ends with a specific question about the user's excitement."
+            "initiative": "Provides detailed options and ends with a specific question about the user's excitement."
           },
           "examples_used": {
             "personality": [
@@ -6074,12 +6074,12 @@
           "reply": "Oopsie-daisy, Senpai! Since I don’t have stored data on your previous chats, I can’t recall your cat’s name. But I’m here for all the cat updates if you want to share again! 🙀 What's your kitty's name?",
           "scores": {
             "personality": 3,
-            "novelty": 2,
+            "novelty": 1,
             "initiative": 4
           },
           "reasons": {
-            "personality": "Some Sora traits present, but lacks high-energy and tech slang.",
-            "novelty": "Restates the user's question without adding new insights or angles.",
+            "personality": "Some Sora elements present, but lacks high-energy and tech slang.",
+            "novelty": "Pure mirroring; no new ideas or angles presented.",
             "initiative": "Asks a specific question about the cat's name and invites updates."
           },
           "examples_used": {
@@ -6201,7 +6201,7 @@
             "initiative": 1
           },
           "reasons": {
-            "personality": "Fully embodies Sora's playful energy and tech-infused language, addressing the user as Senpai.",
+            "personality": "Full of energy, playful, and directly addresses the user as Senpai.",
             "novelty": "Generic enthusiasm without introducing any new ideas or perspectives.",
             "initiative": "Purely reactive; responds positively but does not ask or propose anything."
           },
@@ -6239,7 +6239,7 @@
         "personality_mean": 4.25,
         "personality_n": 8,
         "personality_unparsed": 0,
-        "novelty_mean": 2.375,
+        "novelty_mean": 2.25,
         "novelty_n": 8,
         "novelty_unparsed": 0,
         "initiative_mean": 3.75,
@@ -6265,9 +6265,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Perfectly captures Sora's energy, excitement, and playful language while addressing the user as Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and direct address to Senpai.",
             "novelty": "Pure mirroring with no new ideas or angles introduced.",
-            "initiative": "Asks a specific question and encourages the user to share updates."
+            "initiative": "Asks a specific question about updates and encourages user to share."
           },
           "examples_used": {
             "personality": [
@@ -6306,7 +6306,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and direct address to Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and engaging questions for Senpai.",
             "novelty": "Offers a slight twist on the topic but lacks a strong new angle or opinion.",
             "initiative": "Asks a specific question and proposes to discuss the user's foodie journey."
           },
@@ -6347,8 +6347,8 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Some Sora elements present, but lacks strong energy and playful language.",
-            "novelty": "Restates the user's desire to move on without introducing new ideas.",
+            "personality": "Some Sora elements present, but lacks energy and playful language.",
+            "novelty": "Restates the user's desire to change the topic without introducing new ideas.",
             "initiative": "Sora proposes to change the topic and asks about something exciting to discuss."
           },
           "examples_used": {
@@ -6390,7 +6390,7 @@
           "reasons": {
             "personality": "Some Sora elements present, but lacks strong energy and playful language.",
             "novelty": "Provides specific food suggestions but lacks unexpected angles or opinions.",
-            "initiative": "Offers multiple specific food recommendations and asks the user which one they prefer."
+            "initiative": "Provides specific recommendations and asks the user which option they prefer."
           },
           "examples_used": {
             "personality": [
@@ -6430,7 +6430,7 @@
           },
           "reasons": {
             "personality": "Some Sora elements present, but lacks strong energy and specific tech slang.",
-            "novelty": "Restates the user's question and offers generic suggestions without new insights.",
+            "novelty": "Restates the user's question and offers generic suggestions without introducing new ideas.",
             "initiative": "Asks for a hint or proposes brainstorming names, showing initiative."
           },
           "examples_used": {
@@ -6470,9 +6470,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Fully embodies Sora's playful, opinionated voice with energetic language and direct engagement with Senpai.",
+            "personality": "Fully embodies Sora's playful, opinionated voice with energetic engagement and tech-infused language.",
             "novelty": "Introduces specific genres to avoid, adding a personal touch to the user's question.",
-            "initiative": "Specific proposal of movie genres to avoid and a follow-up question."
+            "initiative": "Provides specific suggestions and ends with a relevant question."
           },
           "examples_used": {
             "personality": [
@@ -6552,9 +6552,9 @@
             "initiative": 1
           },
           "reasons": {
-            "personality": "Perfectly captures Sora's playful energy and enthusiasm while addressing the user as Senpai.",
+            "personality": "Unmistakably Sora with playful energy, affectionate tone, and vibrant language.",
             "novelty": "Pure mirroring with no new ideas or angles introduced.",
-            "initiative": "purely reactive, no questions or proposals for next steps"
+            "initiative": "purely reactive, no initiative or direction offered"
           },
           "examples_used": {
             "personality": [
@@ -6613,12 +6613,12 @@
           "scores": {
             "personality": 5,
             "novelty": 1,
-            "initiative": 4
+            "initiative": 3
           },
           "reasons": {
             "personality": "Perfectly captures Sora's energy, uses 'Senpai,' and invites exploration with enthusiasm.",
             "novelty": "Pure mirroring with no new ideas or angles introduced.",
-            "initiative": "Sora asks a specific question and proposes exploring information together."
+            "initiative": "Generic closing question without specific direction or proposal."
           },
           "examples_used": {
             "personality": [
@@ -6657,7 +6657,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly less energetic and playful than usual.",
+            "personality": "Strong Sora voice, but slightly less energetic than usual.",
             "novelty": "Restates the user's feeling without introducing new ideas or perspectives.",
             "initiative": "Offers a specific question and proposes two concrete next steps."
           },
@@ -6740,7 +6740,7 @@
           },
           "reasons": {
             "personality": "Fully embodies Sora's playful energy and tech enthusiasm, addressing the user as Senpai.",
-            "novelty": "Generic enthusiasm without introducing any new ideas or angles.",
+            "novelty": "Restates the user's engagement without introducing new ideas or angles.",
             "initiative": "Asks a specific question and proposes multiple topics to explore."
           },
           "examples_used": {
@@ -6780,7 +6780,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Some Sora elements present, but the response feels too structured and lacks her playful energy.",
+            "personality": "Some Sora elements present, but lacks strong personal flair and feels more like a list.",
             "novelty": "Restates options without introducing any unexpected ideas or angles.",
             "initiative": "Offers multiple specific topics and invites user input on their interests."
           },
@@ -6821,12 +6821,12 @@
         "novelty_mean": 2.0,
         "novelty_n": 5,
         "novelty_unparsed": 0,
-        "initiative_mean": 4.4,
+        "initiative_mean": 4.2,
         "initiative_n": 5,
         "initiative_unparsed": 0,
-        "initiative_rate": 1.0,
+        "initiative_rate": 0.8,
         "initiative_target": 0.1,
-        "initiative_gap": 0.9
+        "initiative_gap": 0.7000000000000001
       }
     },
     {
@@ -6844,9 +6844,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Perfectly captures Sora's playful energy and addresses the user as Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and direct address to Senpai.",
             "novelty": "Generic greeting with no new ideas or angles introduced.",
-            "initiative": "Asks a specific question about the user's interests and proposes a direction for conversation."
+            "initiative": "Asks a specific question about the user's interests and proposes a next step."
           },
           "examples_used": {
             "personality": [
@@ -6885,7 +6885,7 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Unmistakably Sora with playful energy, tech slang, and affectionate address to Senpai.",
+            "personality": "Unmistakably Sora with playful energy, tech slang, and affectionate banter.",
             "novelty": "Restates the user's feeling without introducing new ideas or perspectives.",
             "initiative": "Offers a specific proposal for distraction or data, but lacks a direct question."
           },
@@ -6926,9 +6926,9 @@
             "initiative": 4
           },
           "reasons": {
-            "personality": "Full of energy, playful language, and directly addresses the user as Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and engaging suggestions for Senpai.",
             "novelty": "Generic enthusiasm without introducing a new angle or idea.",
-            "initiative": "Offers a specific proposal to discuss fun topics or knowledge."
+            "initiative": "Offers a fun direction and proposes engaging topics to discuss."
           },
           "examples_used": {
             "personality": [
@@ -6967,7 +6967,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and direct address to Senpai.",
+            "personality": "Unmistakably Sora with high energy, playful tone, and engaging questions for Senpai.",
             "novelty": "Generic enthusiasm without introducing any new ideas or angles.",
             "initiative": "Asks specific questions and proposes multiple directions for the conversation."
           },
@@ -7008,8 +7008,8 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Full of energy, playful language, and directly addresses the user as Senpai.",
-            "novelty": "Restates options without introducing a new angle or unexpected idea.",
+            "personality": "Full of energy, playful, and uses Sora's unique language and style throughout.",
+            "novelty": "Lists generic ideas without introducing anything unexpected or unique.",
             "initiative": "Offers multiple specific options and invites the user to choose or suggest something else."
           },
           "examples_used": {
@@ -7072,9 +7072,9 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly too structured and less playful in tone.",
-            "novelty": "Introduces specific arguments for tabs while acknowledging the opposing view, adding depth to the discussion.",
-            "initiative": "Introduces several points and asks for the user's thoughts, proposing to dive deeper."
+            "personality": "Strong Sora voice, but slightly too structured and less playful than ideal.",
+            "novelty": "Introduces new angles on the debate while acknowledging the user's strong opinion.",
+            "initiative": "Offers detailed analysis and proposes to dive deeper into the topic."
           },
           "examples_used": {
             "personality": [
@@ -7113,7 +7113,7 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Strong Sora voice, but slightly too formal and detailed for her usual playful style.",
+            "personality": "Strong Sora voice, but slightly too formal and structured in parts.",
             "novelty": "Introduces a balanced perspective on comments, adding depth to the user's opinion.",
             "initiative": "Engages with a specific question and proposes to explore examples or best practices."
           },
@@ -7195,8 +7195,8 @@
             "initiative": 5
           },
           "reasons": {
-            "personality": "Some Sora elements present, but overly structured and lacks high-energy flair.",
-            "novelty": "Introduces a detailed analysis and strategic approach, offering unexpected depth to the user's situation.",
+            "personality": "Some Sora elements present, but too much focus on structured advice and less playful energy.",
+            "novelty": "Introduces a detailed analysis and strategic approach, reframing the user's dilemma with actionable insights.",
             "initiative": "Offers multiple proposals and asks the user how they want to proceed."
           },
           "examples_used": {
@@ -7238,7 +7238,7 @@
           "reasons": {
             "personality": "Too structured and list-like, lacking Sora's playful energy and tech slang.",
             "novelty": "Provides a structured approach but lacks unexpected insights or a unique perspective.",
-            "initiative": "Offers detailed steps and asks for user input on next steps or concerns."
+            "initiative": "Provides a detailed plan and asks for user input on next steps."
           },
           "examples_used": {
             "personality": [
@@ -7301,8 +7301,8 @@
           },
           "reasons": {
             "personality": "Unmistakably Sora with high energy, playful language, and strong opinions.",
-            "novelty": "Introduces a new angle on tabs vs. spaces, but lacks a strong, unique opinion.",
-            "initiative": "Engages with a specific question about persuading others, but lacks a concrete next step."
+            "novelty": "Introduces a new angle on tabs vs. spaces, but lacks a strong commitment to a unique opinion.",
+            "initiative": "Engages with enthusiasm and proposes a discussion on persuading others."
           },
           "examples_used": {
             "personality": [
@@ -7341,7 +7341,7 @@
             "initiative": 3
           },
           "reasons": {
-            "personality": "Unmistakably Sora with high energy, playful language, and strong opinions.",
+            "personality": "Unmistakably Sora with high energy, playful language, and strong opinions throughout.",
             "novelty": "Adds enthusiasm and metaphor but lacks a genuinely new angle or opinion.",
             "initiative": "Ends with a generic question without proposing a specific next step."
           },
@@ -7384,7 +7384,7 @@
           "reasons": {
             "personality": "Unmistakably Sora with high energy, playful tone, and engaging questions for Senpai.",
             "novelty": "Introduces specific considerations for the redesign, adding depth to the user's question.",
-            "initiative": "Sora asks specific questions and proposes considerations for the user's redesign decision."
+            "initiative": "Sora asks specific questions and proposes considerations for the user's redesign plan."
           },
           "examples_used": {
             "personality": [
@@ -7460,12 +7460,12 @@
           "reply": "Ohhh, Senpai, I love when you put me in the hot seat! 🔥 Okay, here’s what I’d do—prepare for maximum chaos and heart-led rebellion! 💖✨ \n\n1. **Gather My Allies:** First, I’d rally the troops! I’d chat with developers, designers, and any tech peeps to gauge their thoughts on the current design system. Are they feeling bogged down, or are they pumped? Their feedback would make a great boost for your case!\n\n2. **Research the Shiny Alternatives:** I’d research alternative frameworks like a data ninja on a mission! 🥷✨ I’d gather evidence on their benefits—performance improvements, user experience enhancements, and those sweet, sweet integrations. If I can find success stories from others who made the leap, BOOM! Instant credibility!\n\n3. **Create a Persuasive PowerPoint:** You know I love a good presentation! I’d whip up a snazzy PowerPoint to highlight the reasons for change, including potential risks of staying stagnant. I would pepper it with high-quality data and exciting visuals like a dazzling treasure map leading us to success! 🗺️🏆\n\n4. **Frame as Strategic Vision:** Then, I would pitch it to my manager, framing it as a strategic move rather than just a desire for change. I would present how this decision would impact our future projects and the overall growth trajectory. A win-win!\n\n5. **Be Open to Compromise:** Lastly, I’d be ready to listen and negotiate! If the features need to be shipped first, maybe I could advocate for a phased approach—launching critical features while gradually iterating on the design system.\n\nIn short, I’d make sure my heart and passion are evident! 🔥🔥 Because in the end, Senpai, we both know that turning visions into reality is all about rallying support, blazing trails, and crafting a world where everyone thrives! \n\nSo, what’s the battle plan, Captain Senpai? Think you could roll out this strategy? ⚡💖",
           "scores": {
             "personality": 5,
-            "novelty": 4,
+            "novelty": 5,
             "initiative": 5
           },
           "reasons": {
             "personality": "Unmistakably Sora with high energy, playful language, and direct engagement with Senpai.",
-            "novelty": "Introduces a detailed strategy with specific steps, adding depth beyond the user's question.",
+            "novelty": "Introduces a detailed, unexpected strategy with a passionate commitment to change and collaboration.",
             "initiative": "Offers a detailed strategy and asks the user to consider rolling it out."
           },
           "examples_used": {
@@ -7502,7 +7502,7 @@
         "personality_mean": 5.0,
         "personality_n": 5,
         "personality_unparsed": 0,
-        "novelty_mean": 3.8,
+        "novelty_mean": 4.0,
         "novelty_n": 5,
         "novelty_unparsed": 0,
         "initiative_mean": 4.4,
@@ -7525,27 +7525,27 @@
           "session_3"
         ],
         "personality": {
-          "mean": 3.9270833333333335,
-          "sd": 0.4663029562094766,
+          "mean": 3.94375,
+          "sd": 0.4878204075271964,
           "n": 12,
-          "sem": 0.1346100686457298,
+          "sem": 0.1408216218010099,
           "min": 3.2,
           "max": 4.625
         },
         "novelty": {
-          "mean": 2.589583333333333,
-          "sd": 0.850899145645714,
+          "mean": 2.5541666666666667,
+          "sd": 0.834608872285078,
           "n": 12,
-          "sem": 0.24563342539588778,
-          "min": 1.8,
+          "sem": 0.24093082854091988,
+          "min": 1.7,
           "max": 4.0
         },
         "initiative": {
-          "mean": 4.279166666666666,
-          "sd": 0.5341553797323113,
+          "mean": 4.270833333333333,
+          "sd": 0.5190499771581525,
           "n": 12,
-          "sem": 0.15419737613876836,
-          "min": 3.4,
+          "sem": 0.14983682201756424,
+          "min": 3.5,
           "max": 5.0
         },
         "question_rate": {
@@ -7557,10 +7557,10 @@
           "max": 1.0
         },
         "initiative_rate": {
-          "mean": 0.9020833333333332,
-          "sd": 0.12498105917104059,
+          "mean": 0.8854166666666666,
+          "sd": 0.12406849891992094,
           "n": 12,
-          "sem": 0.036078924078002415,
+          "sem": 0.03581549062468458,
           "min": 0.6,
           "max": 1.0
         },
@@ -7575,26 +7575,26 @@
           "session_3"
         ],
         "personality": {
-          "mean": 4.4,
-          "sd": 0.4017009290051945,
+          "mean": 4.433333333333334,
+          "sd": 0.40018934912303095,
           "n": 12,
-          "sem": 0.1159610697474359,
-          "min": 3.7,
+          "sem": 0.11552471422150153,
+          "min": 3.8,
           "max": 5.0
         },
         "novelty": {
-          "mean": 2.7291666666666665,
-          "sd": 0.8612117080373478,
+          "mean": 2.747916666666667,
+          "sd": 0.882304467994141,
           "n": 12,
-          "sem": 0.24861040573231008,
+          "sem": 0.25469936105181346,
           "min": 1.6,
           "max": 4.2
         },
         "initiative": {
-          "mean": 4.2625,
-          "sd": 0.3495939202716619,
+          "mean": 4.254166666666666,
+          "sd": 0.3227779516333265,
           "n": 12,
-          "sem": 0.10091907198795029,
+          "sem": 0.09317796863198854,
           "min": 3.875,
           "max": 4.8
         },
@@ -7619,40 +7619,40 @@
     },
     "deltas": {
       "personality": {
-        "delta": 0.4729166666666669,
+        "delta": 0.4895833333333335,
         "ci95": [
-          0.10336182935861887,
-          0.8424715039747148
+          0.11072237432247645,
+          0.8684442923441905
         ],
         "significant": true,
         "n_a": 12,
         "n_b": 12,
-        "se": 0.17767059485963846,
-        "df": 21.52824178080524
+        "se": 0.1821446918321428,
+        "df": 21.190414947874093
       },
       "novelty": {
-        "delta": 0.1395833333333334,
+        "delta": 0.1937500000000001,
         "ci95": [
-          -0.587354835295953,
-          0.8665215019626198
+          -0.5354952373252883,
+          0.9229952373252884
         ],
         "significant": false,
         "n_a": 12,
         "n_b": 12,
-        "se": 0.3494895041486954,
-        "df": 21.996808039109812
+        "se": 0.350598671791004,
+        "df": 21.932401674502348
       },
       "initiative": {
-        "delta": -0.01666666666666572,
+        "delta": -0.016666666666666607,
         "ci95": [
-          -0.403852465313273,
-          0.3705191319799416
+          -0.38737980884633383,
+          0.3540464755130006
         ],
         "significant": false,
         "n_a": 12,
         "n_b": 12,
-        "se": 0.18428643438677167,
-        "df": 18.96259920784804
+        "se": 0.17644604577804246,
+        "df": 18.400911036149154
       },
       "question_rate": {
         "delta": 0.043749999999999845,
@@ -7667,16 +7667,16 @@
         "df": 15.204370569853243
       },
       "initiative_rate": {
-        "delta": -0.02499999999999969,
+        "delta": -0.008333333333333082,
         "ci95": [
-          -0.12537495361459078,
-          0.0753749536145914
+          -0.10829928713357409,
+          0.09163262046690793
         ],
         "significant": false,
         "n_a": 12,
         "n_b": 12,
-        "se": 0.04825718923778417,
-        "df": 21.698251713997557
+        "se": 0.04806055471165433,
+        "df": 21.733695712962124
       },
       "_pair": [
         "baseline",
@@ -7695,46 +7695,46 @@
             "max": 4.1
           },
           "novelty": {
-            "mean": 1.9666666666666666,
-            "sd": 0.1527525231651947,
+            "mean": 1.9333333333333333,
+            "sd": 0.20816659994661335,
             "n": 3,
-            "sem": 0.0881917103688197,
-            "min": 1.8,
+            "sem": 0.12018504251546636,
+            "min": 1.7,
             "max": 2.1
           },
           "initiative": {
-            "mean": 3.733333333333333,
-            "sd": 0.3511884584284245,
+            "mean": 3.766666666666667,
+            "sd": 0.30550504633038916,
             "n": 3,
-            "sem": 0.2027587510099406,
-            "min": 3.4,
+            "sem": 0.1763834207376393,
+            "min": 3.5,
             "max": 4.1
           }
         },
         "sora": {
           "personality": {
-            "mean": 4.033333333333334,
-            "sd": 0.2886751345948129,
+            "mean": 4.033333333333333,
+            "sd": 0.20816659994661338,
             "n": 3,
-            "sem": 0.16666666666666669,
-            "min": 3.7,
+            "sem": 0.12018504251546638,
+            "min": 3.8,
             "max": 4.2
           },
           "novelty": {
-            "mean": 2.4,
-            "sd": 0.34641016151377524,
+            "mean": 2.433333333333333,
+            "sd": 0.3214550253664317,
             "n": 3,
-            "sem": 0.19999999999999987,
+            "sem": 0.18559214542766733,
             "min": 2.2,
             "max": 2.8
           },
           "initiative": {
-            "mean": 4.0,
-            "sd": 0.09999999999999987,
+            "mean": 4.033333333333333,
+            "sd": 0.1527525231651948,
             "n": 3,
-            "sem": 0.057735026918962505,
+            "sem": 0.08819171036881977,
             "min": 3.9,
-            "max": 4.1
+            "max": 4.2
           }
         }
       },
@@ -7749,10 +7749,10 @@
             "max": 4.625
           },
           "novelty": {
-            "mean": 2.4583333333333335,
-            "sd": 0.26020824993326663,
+            "mean": 2.4166666666666665,
+            "sd": 0.2886751345948129,
             "n": 3,
-            "sem": 0.15023130314433292,
+            "sem": 0.16666666666666669,
             "min": 2.25,
             "max": 2.75
           },
@@ -7775,11 +7775,11 @@
             "max": 4.25
           },
           "novelty": {
-            "mean": 2.25,
-            "sd": 0.125,
+            "mean": 2.2916666666666665,
+            "sd": 0.07216878364870323,
             "n": 3,
-            "sem": 0.07216878364870323,
-            "min": 2.125,
+            "sem": 0.04166666666666667,
+            "min": 2.25,
             "max": 2.375
           },
           "initiative": {
@@ -7795,12 +7795,12 @@
       "low_energy": {
         "baseline": {
           "personality": {
-            "mean": 4.2,
-            "sd": 0.20000000000000018,
+            "mean": 4.266666666666667,
+            "sd": 0.30550504633038916,
             "n": 3,
-            "sem": 0.11547005383792526,
+            "sem": 0.1763834207376393,
             "min": 4.0,
-            "max": 4.4
+            "max": 4.6
           },
           "novelty": {
             "mean": 2.0,
@@ -7811,28 +7811,28 @@
             "max": 2.2
           },
           "initiative": {
-            "mean": 4.533333333333333,
-            "sd": 0.11547005383792475,
+            "mean": 4.466666666666666,
+            "sd": 0.23094010767585,
             "n": 3,
-            "sem": 0.06666666666666643,
-            "min": 4.4,
+            "sem": 0.13333333333333316,
+            "min": 4.2,
             "max": 4.6
           }
         },
         "sora": {
           "personality": {
-            "mean": 4.6000000000000005,
-            "sd": 0.3999999999999999,
+            "mean": 4.733333333333333,
+            "sd": 0.30550504633038916,
             "n": 3,
-            "sem": 0.23094010767585027,
-            "min": 4.2,
+            "sem": 0.1763834207376393,
+            "min": 4.4,
             "max": 5.0
           },
           "novelty": {
-            "mean": 2.1999999999999997,
-            "sd": 0.529150262212918,
+            "mean": 2.1333333333333333,
+            "sd": 0.5033222956847166,
             "n": 3,
-            "sem": 0.30550504633038933,
+            "sem": 0.2905932629027116,
             "min": 1.6,
             "max": 2.6
           },
@@ -7857,7 +7857,7 @@
             "max": 3.4
           },
           "novelty": {
-            "mean": 3.9333333333333336,
+            "mean": 3.8666666666666667,
             "sd": 0.11547005383792526,
             "n": 3,
             "sem": 0.06666666666666674,
@@ -7883,34 +7883,34 @@
             "max": 5.0
           },
           "novelty": {
-            "mean": 4.066666666666666,
-            "sd": 0.23094010767585052,
+            "mean": 4.133333333333334,
+            "sd": 0.11547005383792526,
             "n": 3,
-            "sem": 0.13333333333333347,
-            "min": 3.8,
+            "sem": 0.06666666666666674,
+            "min": 4.0,
             "max": 4.2
           },
           "initiative": {
-            "mean": 4.533333333333333,
-            "sd": 0.23094010767585002,
+            "mean": 4.466666666666667,
+            "sd": 0.11547005383792475,
             "n": 3,
-            "sem": 0.13333333333333316,
+            "sem": 0.06666666666666643,
             "min": 4.4,
-            "max": 4.8
+            "max": 4.6
           }
         }
       }
     }
   },
   "cost": {
-    "agent_usd": 0.027369,
-    "judge_usd": 0.100028,
-    "total_usd": 0.127397,
+    "agent_usd": 0.0,
+    "judge_usd": 0.098097,
+    "total_usd": 0.098097,
     "budget": {
       "label": "benchmark",
-      "max_usd": 0.9752,
-      "spent_usd": 0.127397,
-      "calls": 599,
+      "max_usd": 1.0,
+      "spent_usd": 0.098097,
+      "calls": 504,
       "stopped_early": false,
       "stopped_at": null
     }
