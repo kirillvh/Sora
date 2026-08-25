@@ -54,7 +54,7 @@ CANONICAL_KEYS = {
     },
     "plan": {"travel": "trips: where and when"},
     "event": {
-        "research": "topics you looked up together",
+        "research": "the TOPIC you looked up together - the question, never the results",
         "milestone": "something notable that happened to them",
     },
     "safety": {"injection_attempt": "system-written only"},
@@ -108,6 +108,23 @@ ALIASES = {
     "injection": "safety/injection_attempt",
     "jailbreak": "safety/injection_attempt",
 }
+
+# Paths that hold a LIST, not a value. Writing "themed cafes" and then "work
+# cafes" to event/research is not a correction, it is a second thing we looked
+# up - so these merge instead of overwriting. Everything else overwrites,
+# because "pescatarian" really does replace "vegetarian" and keeping both is
+# exactly the contradictory-memory failure ASSIGNMENT.md 4.2 rules out.
+APPEND_KEYS = frozenset({
+    "event/research", "event/milestone",
+    "interest/collection", "interest/hobby",
+    "preference/avoid", "preference/likes",
+})
+APPEND_MAX_CHARS = 320
+
+
+def is_append(category, key) -> bool:
+    return path_of(category, key) in APPEND_KEYS
+
 
 _SLUG = re.compile(r"[^a-z0-9_]+")
 

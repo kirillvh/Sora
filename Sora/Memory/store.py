@@ -30,6 +30,8 @@ import pathlib
 import sqlite3
 import time
 
+from Sora.Memory import schema
+
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 DEFAULT_DB = REPO_ROOT / "out" / "memory" / "sora_memory.sqlite3"
 
@@ -69,6 +71,21 @@ CREATE TABLE IF NOT EXISTS history (
 CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT);
 CREATE INDEX IF NOT EXISTS idx_history_session ON history(session_id);
 """
+
+
+def _merge(old_value, new_value) -> str:
+    """Append semantics for list-like paths, deduplicated and capped."""
+    parts = [p.strip() for p in str(old_value).split(";") if p.strip()]
+    fresh = str(new_value).strip()
+    lowered = [p.lower() for p in parts]
+    if fresh.lower() in lowered or any(fresh.lower() in p for p in lowered):
+        return str(old_value)
+    parts.append(fresh)
+    merged = "; ".join(parts)
+    while len(merged) > schema.APPEND_MAX_CHARS and len(parts) > 1:
+        parts.pop(0)          # oldest entry drops first
+        merged = "; ".join(parts)
+    return merged
 
 
 def db_path(path=None) -> pathlib.Path:
@@ -158,6 +175,8 @@ class MemoryStore:
                  self.user_id, category, key))
             outcome = "deleted"
         elif existing:
+            if schema.is_append(category, key) and not was_deleted and old_value and value:
+                value = _merge(old_value, value)
             if not was_deleted and (old_value or "") == (value or ""):
                 self.conn.commit()
                 return {"op": "noop", "category": category, "key": key,

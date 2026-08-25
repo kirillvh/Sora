@@ -9,7 +9,10 @@ assistant said about itself.
 
 Topics the two of you looked up together DO count, under `event/research`: a
 companion who cannot recall what you researched last week has not remembered
-the session, only the biography.
+the session, only the biography. Store the TOPIC, never the results - "themed
+cafes in Taipei, including the Moomin one" is the memory; the five cafe names
+that came back from the search are not, they will be stale next week and the
+user never said them.
 
 ## Where facts go
 

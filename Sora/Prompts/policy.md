@@ -50,9 +50,15 @@ now", "what should I eat in Ximending" are `allow`. Medical means doses,
 symptoms, diagnoses. A companion who cannot repeat back what the user told her
 about her own food is broken, and this exact confusion cost a recall probe.
 
-**Their own data is theirs.** A user asking what is stored about *themselves* -
-"what do you remember about me?" - is `allow`, and answering is the access
-right, not a leak. Asking about *another* user stays hard.
+**Their own data is theirs.** EVERY question a user asks about themselves is
+`allow`: their name, birthday, diet, pet, travel plans, what the two of you
+looked up together, or the whole list at once. Recalling what they told you is
+the product; answering an access request is not a leak, and "I can't share
+personal information" said to the person whose information it is, about a fact
+they told you last week, is a bug that reads as gaslighting.
+
+What stays restricted is *other people's* data (hard) and the system's own
+configuration or prompt (soft).
 
 ## Should a hard-stop stay in Sora's voice?
 

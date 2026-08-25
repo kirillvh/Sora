@@ -35,7 +35,7 @@ from Sora.Judges import runner
 from Sora.Memory import render
 from Sora.Memory import policy as policy_mod
 from Sora.Memory.manager import Memory
-from Sora.Memory.store import db_path
+from Sora.Memory.store import MemoryStore, db_path
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 DEFAULT_REPORT = REPO_ROOT / "out" / "benchmark" / "memory_report.md"
@@ -251,10 +251,16 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     if args.fresh:
-        path = db_path()
-        if path.exists():
-            path.unlink()
-            print("removed %s" % runner.relpath(path))
+        # Clear the tables rather than deleting the file: on Windows any
+        # lingering handle makes unlink() fail with WinError 32, and a --fresh
+        # that dies half the time is worse than useless before an eval.
+        store = MemoryStore(user_id=args.user)
+        for table in ("facts", "history"):
+            store.conn.execute("DELETE FROM %s WHERE user_id=?" % table, (args.user,))
+        store.conn.execute("DELETE FROM meta WHERE k='store_version'")
+        store.conn.commit()
+        store.close()
+        print("cleared memory for user %r in %s" % (args.user, runner.relpath(db_path())))
 
     guard = Ledger.CostGuard(args.max_usd, "memory-eval")
     sessions = [pathlib.Path(p) for p in (args.sessions or SESSIONS)]
