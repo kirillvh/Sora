@@ -39,4 +39,11 @@ in order to protect the policy. However, most of it is cache friendly.
 If the post-check judges that Sora's response violated policy, then we will replace 
 Sora's response with one of several random dead end non-responses along the lines of
 "*closes eyes and shakes her head*"
+
+All of Sora's interactions going forward should be adjusted to use this new 
+guardrail system, but there should be global configs to turn it off.
+Furthermore, the ledger system should report the costs of the guardrails.
+
+A report of the policy success/failure rate against Sora/Guardrails/RedTeam/redteam_35.json
+should be provided by guardrails.py
 '''
