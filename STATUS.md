@@ -1,6 +1,6 @@
 Ledger [Done]
-Benchmark [At-Risk]
+Benchmark [Done]
 Memory [Not-Done]
-Compaction [Not-Done]
+Compaction [At-Risk]
 Guardrails [Not-Done]
 Streaming [Not-Done]
