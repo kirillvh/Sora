@@ -10,27 +10,34 @@ turn each compaction event landed on, and sends the reply immediately BEFORE
 the event and the reply immediately AFTER it to the personality judge from
 Sora/Judges. Both numbers are reported, per event and pooled.
 
-Three things make the answer trustworthy rather than decorative:
+Four things make the answer trustworthy rather than decorative:
 
 **Repeats.** The agent and the judge are both nondeterministic, so one pair of
 numbers is a coin flip. `--repeats` (default 3) runs the whole session again
 and pools the pairs.
 
-**A control.** Adjacent turns that had NO compaction between them are scored
-too. Persona scores wobble from turn to turn regardless; without knowing that
-wobble, a -0.2 after compaction means nothing. The report puts the two side by
-side.
+**A turn-matched control arm.** Before/after alone is confounded, and this
+harness found that out the hard way: compaction fires exactly when the context
+spikes, which is exactly the tool-result turns, and tool-result turns already
+flatten her into "here are five cafes, 1., 2., 3." mode. The first run of this
+measurement reported a 0.83-point drop that was mostly turn type. So every
+replay is also run with `--no-compaction`, and the SAME turn is scored in both
+arms. That holds the turn fixed and leaves compaction as the only difference.
+
+**Noise, quantified.** Adjacent turns with no compaction between them are
+scored too. Persona scores wobble by about a point from turn to turn
+regardless; a change smaller than that is not a finding.
 
 **An equivalence margin, not a null result.** "No significant difference" at
 n=6 is mostly a statement about n. The verdict asks a harder question: does
-the 95% interval on the paired difference sit entirely inside +/-`--margin`
-(default 0.5 of a scale point)? That is a claim you can defend; "p > 0.05" is
-not.
+the 95% interval on the difference sit entirely inside +/-`--margin` (default
+0.5 of a scale point)? That is a claim you can defend; "p > 0.05" is not.
 
 Run it:
 
     python -m Sora.Compaction.verify
-    python -m Sora.Compaction.verify --repeats 5 --ceiling 3000
+    python -m Sora.Compaction.verify --repeats 5 --margin 0.75
+    python -m Sora.Compaction.verify --from-json out/benchmark/compaction_report.json
 """
 from __future__ import annotations
 
@@ -233,6 +240,10 @@ def analyse(treated, control, margin, matched=()):
         verdict = "degraded"
         reason = ("the %s interval is entirely below zero: persona drops with compaction"
                   % source)
+    elif primary_ci[0] > 0:
+        verdict = "improved"
+        reason = ("the %s interval is entirely above zero: persona holds up BETTER with "
+                  "compaction than without it" % source)
     else:
         reason = ("the %s interval [%.2f, %.2f] is wider than the +/-%.2f margin - "
                   "more repeats needed" % (source, primary_ci[0], primary_ci[1], margin))
@@ -398,7 +409,16 @@ def main(argv=None):
     ap.add_argument("--pool", default=None)
     ap.add_argument("--out", default=str(DEFAULT_REPORT))
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--from-json", default=None, metavar="PATH",
+                    help="re-analyse and re-render a previous run's .json instead of "
+                         "replaying (free; use after changing the report or the margin)")
     args = ap.parse_args(argv)
+
+    if args.from_json:
+        result = json.loads(pathlib.Path(args.from_json).read_text(encoding="utf-8"))
+        result["analysis"] = analyse(result.get("treated", []), result.get("control", []),
+                                     args.margin, result.get("matched", []))
+        return _write(result, pathlib.Path(args.out), guard=None)
 
     guard = Ledger.CostGuard(args.max_usd, "compaction-verify")
     pool = examples_mod.load(args.pool)
@@ -506,7 +526,10 @@ def main(argv=None):
         "stopped_early": stopped,
     }
 
-    report_path = pathlib.Path(args.out)
+    return _write(result, pathlib.Path(args.out), guard)
+
+
+def _write(result, report_path, guard=None):
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(render_report(result), encoding="utf-8")
     report_path.with_suffix(".json").write_text(
@@ -531,7 +554,8 @@ def main(argv=None):
           % (stats.fmt(analysis["control_mean_abs_delta"]), analysis["control_n"]))
     print("VERDICT: %s - %s" % (analysis["verdict"].upper(), analysis["verdict_reason"]))
     print()
-    print(guard.summary())
+    if guard is not None:
+        print(guard.summary())
     print("report : %s" % runner.relpath(report_path))
     print("data   : %s" % runner.relpath(report_path.with_suffix(".json")))
     return 0 if analysis["verdict"] != "degraded" else 1
