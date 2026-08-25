@@ -1,0 +1,9 @@
+# Pinned so that every candidate — and we, re-running their submission — resolve
+# the same SDK. openai 1.x / 2.x / 3.x differ; the starter is smoke-tested end to
+# end (tool-call round trip included) on the versions below.
+openai==3.3.1
+python-pptx==1.0.2
+python-dotenv==1.2.3
+# Live search only (the one flagship run in §9). Floor, not a pin: DDG scraping
+# breaks with the site, so newer is better here.
+ddgs>=9.0

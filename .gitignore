@@ -1,0 +1,9 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+out/
+ASSIGNMENT.md
+README_STARTER.md
+.env.example
